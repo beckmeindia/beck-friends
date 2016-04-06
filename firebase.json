@@ -1,0 +1,102 @@
+{
+  "firebase": "beckrequest",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+   "cleanUrls": true,
+  "trailingSlash": false,
+  "headers":[ {
+    "source" : "**/*.@(jpg|jpeg|gif|png)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+  } ]
+  },{
+    "source" : "**/css/*.@(css)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=86400"
+    } ]
+  },
+  {
+    "source" : "**/js/*.@(js)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=86400"
+    } ]
+  },
+  {
+    "source" : "**/bower_components/animate.css/*.@(css)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+    } ]
+  },
+  {
+    "source" : "**/bower_components/classie/*.@(js)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+    } ]
+  },
+  {
+    "source" : "**/bower_components/jquery-waypoints/lib/*.@(js)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+    } ]
+  }, 
+  {
+    "source" : "**/bower_components/retina.js/dist/*.@(js)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+    } ]
+  },
+  {
+	"source" : "**/js/vendor/*.@(js)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+    } ]
+  },
+  {
+  "source" : "**/friends/*.@(js|css)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=86400"
+    } ]
+  },
+  {
+  "source" : "**/bower_components/*.@(js|css)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+    } ]
+  },
+    {
+  "source" : "**/friends/ionicons/css/*.@(css)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=86400"
+    } ]
+  },
+  {
+  "source" : "**/friends/font_awesome/css/*.@(css)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=86400"
+    } ]
+  },
+  {
+  	"source" : "**/*.@(ttf)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=604800"
+    } ]
+
+  }]
+}
