@@ -1987,7 +1987,8 @@ var $form_modal = $('.cd-user-modal'),
   FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
   FB.api('/me?fields=id,email,name,picture.height(100)', function(response) { 
-     checkfirebase(email)
+  usremail = String(response.email);
+	checkfirebase(usremail)
 	 //start()
     }); 
   //document.getElementById("signleft").style.display = "none";
@@ -2026,8 +2027,8 @@ var $form_modal = $('.cd-user-modal'),
   if (response.authResponse) {
   if (response.status === 'connected') {  
   FB.api('/me?fields=id,email,name,picture.height(100)', function(response) {
-	checkfirebase(email)
-	//start();
+	usremail = String(response.email);
+	checkfirebase(usremail)
     })
   }else{
   sweetAlert("Oops...", "Something went wrong. Could not Log you in", "error");
