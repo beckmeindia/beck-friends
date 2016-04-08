@@ -1092,7 +1092,7 @@ $(document).ready(function(){
 				newfrconv = "GET QUOTE";
 				}
 				document.getElementById("fare").innerHTML = newfrconv;	
-				var imgbckz = new Image; imgbckz.src = img64;resizeImage(imgbckz);					
+				document.getElementById("posting").style.display="block";				
 				clearInterval(distinterval);
 			}						
 			}else{
@@ -1131,7 +1131,7 @@ $(document).ready(function(){
 				newfrconv = "GET QUOTE";
 				}
 				document.getElementById("fare").innerHTML = newfrconv;
-				var imgbckz = new Image; imgbckz.src = img64;resizeImage(imgbckz);								
+				document.getElementById("posting").style.display="block";
 				clearInterval(distinterval);
 			}	
 			};
@@ -1142,8 +1142,16 @@ $(document).ready(function(){
 	}
 	
 	function resizeImage(img) {
-    img64 = imageToDataUri(img);
-	document.getElementById("posting").style.display="block";
+    img64 = imageToDataUri(img);		
+	if(img64=="data:,"||img64=="data:image/jpeg;"){
+		img64="";
+		sweetAlert("Oops...", "There is some problem with this image. Please select the image again or another one that is similar", "error");
+	}else{
+		document.getElementById("packagephoto").style.display = "none";
+        document.getElementById("card").style.backgroundImage = "url('"+img64+"')";
+		document.getElementById("card").style.backgroundSize = "contain"; document.getElementById("card").style.backgroundPosition = "center"; document.getElementById("card").style.backgroundRepeat = "no-repeat";
+		
+	}
 	}
 	
 	function imageToDataUri(img) {
@@ -1169,12 +1177,9 @@ $(document).ready(function(){
 	function card(){	
 	document.getElementById("files").onchange = function () {
     reader = new FileReader();
-    reader.onload = function (e) {        
-	img = "url('"+e.target.result+"')";  img64 = String(event.target.result);
-		document.getElementById("packagephoto").style.display = "none";
-        document.getElementById("card").style.backgroundImage = img;
-		document.getElementById("card").style.backgroundSize = "contain"; document.getElementById("card").style.backgroundPosition = "center"; document.getElementById("card").style.backgroundRepeat = "no-repeat";
-    };
+    reader.onload = function (e) {      
+	img = "url('"+e.target.result+"')"; var imgbckz = new Image; imgbckz.src = String(event.target.result);resizeImage(imgbckz);  
+	};
     reader.readAsDataURL(this.files[0]);
 	}	
 	}
@@ -1554,7 +1559,7 @@ $(document).ready(function(){
 				usremail=  snapshot.child("usremail").val();
 				usrphone = snapshot.child("usrphone").val();
 				usrid = snapshot.child("usrid").val();
-				fbflag = 0; loggedin = 1; //document.getElementById("mnuitm").style.display="none"; document.getElementById("tgnmlyn").style.paddingLeft = "20px";
+				fbflag = 0; loggedin = 1; 
 				$('#myanchor').click(); $('body').plainOverlay('hide');	
 				
 			}else if(clicklogin==1){
