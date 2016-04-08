@@ -1544,7 +1544,7 @@ $(document).ready(function(){
 			$('body').plainOverlay('show',{
 			opacity:0.8,
 			fillColor: '#000',
-			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Finding your details...</div>'); }
+			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Syncing your details...</div>'); }
 			});
 		}	
 		usrnewmail = String(email).replace(/[^a-zA-Z0-9]/g, ' ');
