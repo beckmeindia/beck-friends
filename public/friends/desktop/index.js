@@ -494,6 +494,13 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 })
 
 $(document).ready(function(){	
+	if (typeof history.pushState === "function") {
+        history.pushState("jibberish", null, null);
+        window.onpopstate = function () {
+            history.pushState('newjibberish', null, null);
+			location.reload();          
+        };
+	}
 	$("#searchloc").focus(function() { $(this).select(); } );
 	var $form_modal = $('.cd-user-modal'),
 		$form_login = $form_modal.find('#cd-login'),
@@ -608,11 +615,13 @@ $(document).ready(function(){
 	$("#demo03").trigger('click');	
 	shwdetls();
 	$("#os-phrases > h2.openz").lettering('words').children("span").lettering().children("span").lettering();
+	/*
 	$('#cloudz').css('background-image','url(../../img/hero.jpg)')
   .waitForImages(function() {
    document.getElementById("cloudz").style.display="block";
    document.getElementById("mnuitm2").style.display="block";			
   }, $.noop, true);
+  */
             var win = $(window),
                 foo = $('#typer');
 
@@ -1500,10 +1509,10 @@ $(document).ready(function(){
       type: 'POST'
 	});
 	}
-
-	function callauto(){		
-		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchloc'));
-        autocomplete.bindTo('bounds', map); 			
+	
+	function callautoinit(){		
+		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchlocinit'));
+        autocomplete.bindTo('bounds', map); 	
 		autocomplete.addListener('place_changed', function() {
 		  var place = autocomplete.getPlace();
           if (!place.geometry) {
@@ -1528,11 +1537,51 @@ $(document).ready(function(){
 			document.getElementById("pckgctr").innerHTML="Loading...";
 			var address = ''; rsltshow = 0; google.maps.event.trigger(map, 'resize');
 			$("#tflbckg").css("background-image", "");
-			$('#namehdr2').trigger('click');
+			$('#namehdr2').trigger('click');			
+			document.getElementById("mnuitm2").style.display="block";	
 			$('.close-initModal').trigger('click');		
 			$('#map').plainOverlay('show',{opacity:0.8, fillColor: '#000', progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Loading...</div>') }});
-			//showtour();	
 			document.getElementById("lastbit").style.display="block";
+			document.getElementById("searchloc").value = document.getElementById("searchlocinit").value;
+			if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+			
+          }          
+        });
+	}
+	
+	function callauto(){		
+		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchloc'));
+        autocomplete.bindTo('bounds', map); 	
+		autocomplete.addListener('place_changed', function() {
+		  var place = autocomplete.getPlace();
+          if (!place.geometry) {
+           return;
+          }
+		  if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(12); 
+			
+          } 
+			var center = place.geometry.location;
+			mycenter = center;
+			getReverseGeocodingData(center.lat(), center.lng());
+			geoQuery.updateCriteria({center: [center.lat(), center.lng()],  radius: 30});
+			if(path) path.setMap(null);
+			for (var i = 0; i < hotSpotMapMarkers.length; i++)
+			hotSpotMapMarkers[i].setMap(null);
+			if(path) path.setMap(null); 
+			document.getElementById("rqstgist").style.display="none";
+			document.getElementById("pckgctr").innerHTML="Loading...";
+			var address = ''; rsltshow = 0; google.maps.event.trigger(map, 'resize');
+			$("#tflbckg").css("background-image", "");
+			$('#map').plainOverlay('show',{opacity:0.8, fillColor: '#000', progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Loading...</div>') }});
 			if (place.address_components) {
             address = [
               (place.address_components[0] && place.address_components[0].short_name || ''),

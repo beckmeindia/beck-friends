@@ -264,10 +264,10 @@
 			if(newflg==0){
 				newflg=1;
 			}else{
-				sweetAlert("Oops...", "You were almost leaving BECK Friends?", "error");
+				//sweetAlert("Oops...", "You were almost leaving BECK Friends?", "error");
 			}            
         };
-    }
+		}
 	var $form_modal = $('.cd-user-modal'),
 		$form_login = $form_modal.find('#cd-login'),
 		$form_signup = $form_modal.find('#cd-signup'),
@@ -667,10 +667,14 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		document.getElementById("pfldelv").innerHTML = arrPckgs[rsltshow].delv;
 		//document.getElementById("pfldelvaddr").innerHTML = arrPckgs[rsltshow].deliveryaddr;
 		document.getElementById("pfldtym").innerHTML = arrPckgs[rsltshow].datetym;
+		imagz = arrPckgs[rsltshow].img64;
+		$("#pflbckg").css("background-image", "url('" + imagz + "')");
+		/*
 		firebaseRef.child("packages").child(arrPckgs[rsltshow].id).child("img").once("value", function(dataSnapshot) {
 			imagz = dataSnapshot.child("img64").val();
 			$("#pflbckg").css("background-image", "url('" + imagz + "')");
 		});
+		*/
 		},100);
 	}
 	
@@ -686,6 +690,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		status:"Not Approved Yet",
 		id: vehicle.id,
 		fare: nwfr,
+		img64:vehicle.img64,
 		pickuplat: vehicle.pickuplat,
 		pickuplng: vehicle.pickuplng,
 		delvlat: vehicle.delvlat,
@@ -1184,7 +1189,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 				newfrconv = "GET QUOTE";
 				}
 				document.getElementById("fare").innerHTML = newfrconv;
-				var imgbckz = new Image; imgbckz.src = img64;resizeImage(imgbckz);
+				document.getElementById("postbtn").style.display = "block";
 				document.getElementById("card2").style.backgroundImage = "url('"+img64+"')";
 				document.getElementById("pickupareasumm").innerHTML = pickuparea;
 				document.getElementById("pickupdetsumm").innerHTML = pickupaddr;
@@ -1194,11 +1199,20 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			},3500)			
 		}		
 	}
-	function resizeImage(img) {
-    img64 = imageToDataUri(img);
-	document.getElementById("postbtn").style.display = "block";
-	}
 	
+	function resizeImage(img) {
+    img64 = imageToDataUri(img);		
+	if(img64=="data:,"||img64=="data:image/jpeg;"){
+		img64="";
+		sweetAlert("Oops...", "There is some problem with this image. Please select the image again or another one that is similar", "error");
+	}else{
+		document.getElementById("packagephoto").style.display = "none";
+        document.getElementById("card").style.backgroundImage = "url('"+img64+"')";
+		document.getElementById("card").style.backgroundSize = "contain"; document.getElementById("card").style.backgroundPosition = "center"; document.getElementById("card").style.backgroundRepeat = "no-repeat";
+	
+	}
+	}
+		
 	var phoneNumPick, phoneNumDelv;
 	function showdelivery(){
 		phoneNumPick = document.getElementById("pickupnum").value.replace(/[^\d]/g, '');
@@ -1403,6 +1417,10 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			befrlogin();
 		}			
 	}
+	function befrlogin2(){
+		$("#pseudologin").click();
+		swal({ title: "Love to have you on board",   text: "Enter into your BECK Friends Account with Facebook",   type: "success",   showCancelButton: true,   confirmButtonColor: "#2bb1de",   confirmButtonText: "Go Ahead" }, function(){login()});		
+	}
 	
 	function befrlogin(){
 		$("button[data-role='end']").click();
@@ -1502,7 +1520,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		});
 		var orderid2 = orderid+"D";
 		firebaseRef.child("packages").child(orderid).update({img:{img64:img64}}).then(function() {
-		firebaseRef.child("users").child(usrid).child("posts").child(orderid).update({status:"Waiting for Accept",description:description,id:orderid,lat:pickuplat,lon:pickuplng,usrid:usrid,usrphone:usrphone,usrname:usrname,usremail:usremail,pickuplat:pickuplat,pickuplng:pickuplng, delvlat:delvlat, delvlng:delvlng, pickuparea:pickuparea, pickupaddr:pickupaddr, pickupname:pickupname, pickupnum:pickupnum, deliveryaddr:deliveryaddr, deliveryarea:deliveryarea, deliverynum:deliverynum, deliveryname:deliveryname,deliverydate:deliverydate,deliverytime:deliverytime, pckgvalue:pckgvalue, pckgweight:pckgweight,pckgsize:pckgsize,fare:fare});
+		firebaseRef.child("users").child(usrid).child("posts").child(orderid).update({status:"Waiting for Accept",img64:img64,description:description,id:orderid,lat:pickuplat,lon:pickuplng,usrid:usrid,usrphone:usrphone,usrname:usrname,usremail:usremail,pickuplat:pickuplat,pickuplng:pickuplng, delvlat:delvlat, delvlng:delvlng, pickuparea:pickuparea, pickupaddr:pickupaddr, pickupname:pickupname, pickupnum:pickupnum, deliveryaddr:deliveryaddr, deliveryarea:deliveryarea, deliverynum:deliverynum, deliveryname:deliveryname,deliverydate:deliverydate,deliverytime:deliverytime, pckgvalue:pckgvalue, pckgweight:pckgweight,pckgsize:pckgsize,fare:fare});
 		firebaseRef.child("users").child(usrid).child("posts").update({notification:"yes"});
 		geoFire.set(orderid, [pickuplat, pickuplng]).then(function() {}, function(error) {
 		myNavigator.popPage('request.html', { animation : 'none' } );
@@ -1591,12 +1609,9 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	function card(){	
 	document.getElementById("files").onchange = function () {
     reader = new FileReader();
-    reader.onload = function (e) {        
-	img = "url('"+e.target.result+"')";  img64 = String(event.target.result);
-		document.getElementById("packagephoto").style.display = "none";
-        document.getElementById("card").style.backgroundImage = img;
-		document.getElementById("card").style.backgroundSize = "contain"; document.getElementById("card").style.backgroundPosition = "center"; document.getElementById("card").style.backgroundRepeat = "no-repeat";
-    };
+    reader.onload = function (e) {
+	img = "url('"+e.target.result+"')"; var imgbckz = new Image; imgbckz.src = String(event.target.result);resizeImage(imgbckz);  
+	};
     reader.readAsDataURL(this.files[0]);
 	}	
 	}

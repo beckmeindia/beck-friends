@@ -36,6 +36,7 @@
   overflow: visible; /*reset*/
 }
 
+
 .dropdown .dropdown-menu {
   max-width: 0;
   position: absolute;
@@ -117,7 +118,6 @@
   width: 6em;
   border-radius: 3em;
   border: 0px solid #eaeaea;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/194122/james-ivy-square.png");
   background-size: cover;
   background-position: center center;
 }
@@ -773,6 +773,7 @@ input:focus {
 	callauto();
 	callauto2();
 	callauto3();
+	callautoinit();
 	}
 	google.maps.event.addDomListener(window, 'load', initMap);	   
 	
@@ -892,7 +893,7 @@ input:focus {
 				</li-->
 			</ul>			
 		</div>		
-		<div layout="row" ng-controller="AppCtrl" ng-cloak="" style="padding-top:60px;height:100%;background-image:url(bckg2.jpg);background-size:contain background-repeat: no-repeat; background-size: 100% 100%;"  class="carddemoInCardActions">
+		<div layout="row" ng-controller="AppCtrl" ng-cloak="" style="padding-top:60px;height:100%;background-color:#d1d1d1;background-size:contain background-repeat: no-repeat; background-size: 100% 100%;"  class="carddemoInCardActions">
   <div flex flex-xs="" flex-gt-xs="30">
   <md-card style="margin:14px 0px 0px 20px;">
   <md-card-header style="padding:20px 40px;">
@@ -1215,7 +1216,7 @@ input:focus {
     </div>
 	<div id="initModal">
 	<div class="close-initModal" style="display:none">CLOSE</div> 	
-	<div id="cloudz" style="display:none;text-align:center;color:#888;font-size:16px;width:100%; height: 600px; position:absolute; left:0; right:0; top:0; bottom:0; max-width:100%; max-height:100%; background-color:#000; background-repeat: no-repeat;background-attachment: fixed;background-position: center;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+	<div id="cloudz" style="background-image:url('../../img/hero.jpg');text-align:center;color:#888;font-size:16px;width:100%; height: 600px; position:absolute; left:0; right:0; top:0; bottom:0; max-width:100%; max-height:100%; background-color:#000; background-repeat: no-repeat;background-attachment: fixed;background-position: center;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 	<!--div class="plane-container">
 <svg version="1.1" x="0px" y="0px"
 width="1131.53px" height="379.304px" viewBox="0 0 1131.53 379.304" enable-background="new 0 0 1131.53 379.304"
@@ -1224,7 +1225,7 @@ xml:space="preserve" class="plane">
 <polygon fill="#14292c" points="1131.53,0.223 274.113,140.173 274.113,301.804 390.796,221.102   "/>
 </svg>
 </div-->
-	<div class="sky">
+	<!--div class="sky">
     <div class="clouds_one"></div>
     <div class="clouds_two"></div>
     <div class="clouds_three"></div>
@@ -1238,7 +1239,10 @@ xml:space="preserve" class="plane">
 	<h2 class="openz">Get packages delivered</h2>
 	<h2 class="openz">With verified profiles</h2>
 	<h2 class="openz">Signup & start Earning</h2>
-	</div>
+	</div-->
+	<ul id="gn-menu" class="gn-menu-main" style="border-radius:50px;margin:0 auto; top:30%;width:60%;margin-left:20%;border-bottom:1px solid #c6d0da;position: absolute;z-index:999;">								
+				<li style="border-radius:50px;width:100%;padding-left:20px;padding-right:10px;font-size:18px;border-right:none"><img src="search.png" style="width:28px;margin-top:17px;display:inline;position:absolute;"/><input id="searchlocinit" placeholder="Where are you?" type="search" class="gn-search" style="padding-left:40px;width:90%;display:inline"></li>
+	</ul>
 	</div>
 	</div>
 	</body>
