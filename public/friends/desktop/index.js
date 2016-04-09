@@ -684,7 +684,7 @@ $(document).ready(function(){
 		else{}
 		},1000);
 	}
-   
+   /*
 	geoQuery.on("ready", function() {
 	nofkeys = Object.keys(vehiclesInQuery).length;
 	if(nofkeys==0 && geoQuery.radius()>1){
@@ -734,7 +734,7 @@ $(document).ready(function(){
 	
 	},3000);
 	});	
-	
+	*/
 	function makeid(){
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

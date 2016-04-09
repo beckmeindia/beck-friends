@@ -2,7 +2,7 @@
 	var geoFire = new GeoFire(firebaseRef.child("_geopckgs")); var geoQuery = geoFire.query({center: [0,0],radius: 0});
 	var vehiclesInQuery = {}; var img64; var autoflag=0; var deliveryFare, pickuplat,pickuplng, delvlat, delvlng, description=" ", pickuparea, pickupaddr, pickupname, pickupnum, deliveryaddr, deliveryarea, deliverynum, deliveryname,deliverydate,deliverytime, pckgvalue = "Less than Rs. 5000", pckgweight = "1 Kg - 10 Kgs",pckgsize = "SMALL (FITS IN BAG)";
 	var pfare, psize, pweight, ppickup, ppickupaddr, pdelv,pdelvaddr,pdatetym,pckgimg,imagz, pusrid, pusrphn, porderid;
-	var loggedin=0,usrname="",usremail="",usrphone="",usrid="", usrfbimg="", usrfbid="", fbflag=0, usrnewmail="";
+	var loggedin=0,usrname="",usremail="",usrphone="",usrid="", usrfbimg="", usrfbid="", fbflag=0, usrnewmail=""; var flgg=0;
 	var otp; var otpmail; var locerr = 0; var hiname = 0; var acceptsloaded = 0; var fare =""; var conval = 1; var convcurr="INR";
 	var newflg=0; var arrPckgs = []; var rsltshow = 0; var idpckgmatch; var arraccepts = []; var revrsdone = 0;
 	app.controller('AppController', ["$scope", "$firebaseArray",
@@ -196,7 +196,8 @@
 		myNavigator.popPage('accept.html', { animation : 'none' } );
 		myNavigator.popPage('page4.html', { animation : 'none' } );
 		google.maps.event.trigger(map, 'resize'); swal("Succesfully Accepted", "The details of the request you accepted has been sent you through SMS", "success");
-  		})			
+  		rfrshresults(map.getCenter());
+		})			
 		};		
 		},2000);	
 		}		
@@ -609,13 +610,13 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	hotSpotMapMarkers.push(new google.maps.Marker({
     position: new google.maps.LatLng(picklat, picklng),
     optimized: true,
-	icon: "package.png",
+	icon: "package_green.png",
     map: map
 	}));
 	hotSpotMapMarkers.push(new google.maps.Marker({
     position: new google.maps.LatLng(delvlat, delvlng),
     optimized: true,
-	icon: "package.png",
+	icon: "package_red.png",
     map: map
 	}));
 	map.fitBounds(latlngbounds);
@@ -877,7 +878,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	},1000);	
 	}
 	var markrz1,markrz2;
-	
+	/*
 	geoQuery.on("ready", function() {
 	nofkeys = Object.keys(vehiclesInQuery).length;
 	if(nofkeys==0 && geoQuery.radius()>1){
@@ -916,6 +917,93 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		if(nofkeys==0){
 			swal({   title: "No New Packages Here",   text: "You have accepted all packages near this location. Please come back later or continue searching for other locations.",   type: "error",   confirmButtonText: "OK" });
     	}else{
+			document.getElementById("prevbtn").style.display="none"; showreslt(0);
+			drawroute(arrPckgs[0].pickuplat, arrPckgs[0].pickuplng, arrPckgs[0].delvlat, arrPckgs[0].delvlng);	
+		}
+		
+	}	
+	
+	},3000);
+	});	
+	*/
+		geoQuery.on("ready", function() {
+	nofkeys = Object.keys(vehiclesInQuery).length;
+	if(nofkeys==0 && geoQuery.radius()>1){
+		if (geoQuery.radius()==15){
+			geoQuery.updateCriteria({radius: 30});
+		}else if (geoQuery.radius()==30){
+			geoQuery.updateCriteria({radius: 300});
+		}else if(geoQuery.radius()==300){
+			geoQuery.updateCriteria({radius: 700});
+		}else if(geoQuery.radius()==700){
+			geoQuery.updateCriteria({radius: 1000});
+		}else if(geoQuery.radius()==1000){
+			geoQuery.updateCriteria({radius: 1500});
+		}else if(geoQuery.radius()==1500){
+			geoQuery.updateCriteria({radius: 3500});
+		}else if(geoQuery.radius()==3500){
+			geoQuery.updateCriteria({radius: 5000});
+		}else{
+			$('#map').plainOverlay('hide');
+		setTimeout(function(){swal({   title: "No Live Requests",   text: "Presently there are no live requests around this location. You can add a request here if you want or search live requests for another location",   timer: 8000 });
+		document.getElementById("pckgctr").innerHTML = "No Requests Found"},3000);
+		document.getElementById("rqstgist").style.display="none";
+		}
+		
+	}
+	var interval = setInterval(function(){
+	if(arrPckgs.length == nofkeys && nofkeys!=0 && acceptsloaded==1){			
+		clearInterval(interval);
+		if(flgg==0)
+		{
+		$('#map').plainOverlay('show',{
+			opacity:0.8,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:26px;color:#fff;font-weight:bold;text-align:center">Customizing Requests<br> for your account...</div>'); }
+		});
+			flgg=1;
+		}
+		for (var key in arraccepts) {forcekeyexit(arraccepts[key])};
+		arrPckgs.sort(function(a, b) {
+			if(String(b.fare).split(" ")[1]=="QUOTE"){
+				return 0 - parseInt(Number(String(a.fare).split(" ")[1]));
+			}else if(String(a.fare).split(" ")[1]=="QUOTE"){
+				return parseInt(Number(String(b.fare).split(" ")[1])) - 0;
+			}
+			else{
+				return parseInt(Number(String(b.fare).split(" ")[1])) - parseInt(Number(String(a.fare).split(" ")[1]));
+			}		
+		});
+		nofkeys = arrPckgs.length;
+		if(nofkeys==0){
+			document.getElementById("pckgctr").innerHTML = "Searching More...";
+			document.getElementById("rqstgist").style.display="none";
+			rfrshresults(mycenter);
+			for (var i = 0; i < hotSpotMapMarkers.length; i++)
+			hotSpotMapMarkers[i].setMap(null);
+		   google.maps.event.trigger(map, 'resize');
+		  rsltshow = 0;
+		  if(path) path.setMap(null);
+		  map.setCenter(mycenter);map.setZoom(12);ntfnd=0;
+			if(geoQuery.radius()==30){
+			geoQuery.updateCriteria({radius: 300});
+		}else if(geoQuery.radius()==300){
+			geoQuery.updateCriteria({radius: 700});
+		}else if(geoQuery.radius()==700){
+			geoQuery.updateCriteria({radius: 1000});
+		}else if(geoQuery.radius()==1000){
+			geoQuery.updateCriteria({radius: 1500});
+		}else if(geoQuery.radius()==1500){
+			geoQuery.updateCriteria({radius: 3500});
+		}else if(geoQuery.radius()==3500){
+			geoQuery.updateCriteria({radius: 5000});
+		}else{
+			$('#map').plainOverlay('hide');
+			document.getElementById("pckgctr").innerHTML = "No Requests Found";
+		setTimeout(function(){swal({   title: "No Live Requests",   text: "Presently there are no live requests around this location. You can add a request here if you want or search live requests for another location",   timer: 8000 })},3000);		
+		}	
+    	}else{
+			$('#map').plainOverlay('hide');
 			document.getElementById("prevbtn").style.display="none"; showreslt(0);
 			drawroute(arrPckgs[0].pickuplat, arrPckgs[0].pickuplng, arrPckgs[0].delvlat, arrPckgs[0].delvlng);	
 		}
@@ -1304,7 +1392,14 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			}
 	}
 	
-	function checkfirebase(email){		
+	function checkfirebase(email){	
+		if(clicklogin==1){
+			$('body').plainOverlay('show',{
+			opacity:0.8,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold;text-align:center">Syncing...</div>'); }
+			});
+		}		
 		usrnewmail = String(email).replace(/[^a-zA-Z0-9]/g, ' ');
 		firebaseRef.child("users").child(usrnewmail).once("value", function(snapshot) {			
 			if(snapshot.val()){
@@ -1312,8 +1407,9 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 				usremail=  snapshot.child("usremail").val();
 				usrphone = snapshot.child("usrphone").val();
 				usrid = snapshot.child("usrid").val();
-				fbflag = 0; loggedin = 1;$('#myanchor').click();			
-			}else if(clicklogin==1){				
+				fbflag = 0; loggedin = 1;$('#myanchor').click(); $('body').plainOverlay('hide');			
+			}else if(clicklogin==1){
+				$('#myanchor').click(); $('body').plainOverlay('hide');				
 				swal({title: "Mobile Verification", text: "",   type: "input",   showCancelButton: false,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your 10-digit mobile number" }, 				
 				function(inputValue){
 				if((inputValue.length == 11) && (inputValue[0] == '0')){
