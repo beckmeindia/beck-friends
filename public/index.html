@@ -1664,7 +1664,7 @@ var $form_modal = $('.cd-user-modal'),
             </div>-->
             <a id="myanchor" href="#" style="display:none" class="cd-close-form">Close</a>
         </div>    </div> 
-    <section class="hero" id="firstscrl" style="background-image:url('http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/hero.jpg')">
+    <section class="hero" id="firstscrl" style="background-color:#000;background-image:url('http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/hero.jpg')">
         <section class="navigation">
             <header>
                 <div class="header-content">
@@ -2075,7 +2075,8 @@ function checkfirebase(email){
           usrname:usrname, usremail:usremail, usrid:usrnewmail, usrfbimg:usrfbimg, usrfbid:usrfbid
         }); 
         var regsclbck = "New user registered on friends : "+usrname+" "+usremail;
-        mailcall(regsclbck); 
+		var tempemail = "";var temphone = "";
+        mailcall(regsclbck,tempemail,temphone); 
          $('#myanchor').click(); 
          start();
 
