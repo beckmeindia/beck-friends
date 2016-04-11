@@ -379,7 +379,7 @@ Hero
 ========================================================================== */
 .hero {
   min-height: 650px;
-  background: url("../img/hero.jpg");
+  background: url("http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/hero.jpg");
   background-position:right center;
   background-size: cover;
   position: relative; }
