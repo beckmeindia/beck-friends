@@ -398,9 +398,7 @@ jQuery.fn.putCursorAtEnd = function() {
 		myNavigator.pushPage('schedule.html', { animation : 'push' } );
 		firebaseRef.child("users").child(usrid).child("accepts").update({notification:"no"});
 	}
-	function tooclick(){
-		
-	}
+	
 	
 	function performClick(elemId) {
    var elem = document.getElementById(elemId);
@@ -775,6 +773,11 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		map.setZoom(11); ntfnd = 0;		
 		getReverseGeocodingData(position.coords.latitude, position.coords.longitude);
 		showtour();		
+		$('#map').plainOverlay('show',{
+			opacity:0.5,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:26px;color:#fff;font-weight:bold;text-align:center">Loading...</div>'); }
+		});
 		geoQuery.updateCriteria({center: [position.coords.latitude, position.coords.longitude],  radius: 30});
 	}
 	 
@@ -863,6 +866,11 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	setTimeout(function(){
 		  google.maps.event.trigger(map, 'resize');
 		 map.setCenter(center);map.setZoom(11);
+		 $('#map').plainOverlay('show',{
+			opacity:0.5,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:26px;color:#fff;font-weight:bold;text-align:center">Loading...</div>'); }
+		});
 		  geoQuery.updateCriteria({center: [center.lat(), center.lng()],  radius: 30});
 		 showtour();
 	  },1500)
@@ -871,54 +879,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	},1000);	
 	}
 	var markrz1,markrz2;
-	/*
-	geoQuery.on("ready", function() {
-	nofkeys = Object.keys(vehiclesInQuery).length;
-	if(nofkeys==0 && geoQuery.radius()>1){
-		if(geoQuery.radius()==30){
-			geoQuery.updateCriteria({radius: 300});
-		}else if(geoQuery.radius()==300){
-			geoQuery.updateCriteria({radius: 700});
-		}else if(geoQuery.radius()==700){
-			geoQuery.updateCriteria({radius: 1000});
-		}else if(geoQuery.radius()==1000){
-			geoQuery.updateCriteria({radius: 1500});
-		}else if(geoQuery.radius()==1500){
-			geoQuery.updateCriteria({radius: 3500});
-		}else if(geoQuery.radius()==3500){
-			geoQuery.updateCriteria({radius: 5000});
-		}else{
-		setTimeout(function(){swal({   title: "No Live Requests",   text: "Presently there are no live requests around this location. You can add a request here if you want or search live requests for another location",   timer: 8000 })},5000);		
-		}
-		
-	}
-	var interval = setInterval(function(){
-	if(arrPckgs.length == nofkeys && nofkeys!=0 && acceptsloaded==1){			
-		clearInterval(interval);
-		for (var key in arraccepts) {forcekeyexit(arraccepts[key])};
-		arrPckgs.sort(function(a, b) {
-			if(String(b.fare).split(" ")[1]=="QUOTE"){
-				return 0 - parseInt(Number(String(a.fare).split(" ")[1]));
-			}else if(String(a.fare).split(" ")[1]=="QUOTE"){
-				return parseInt(Number(String(b.fare).split(" ")[1])) - 0;
-			}
-			else{
-				return parseInt(Number(String(b.fare).split(" ")[1])) - parseInt(Number(String(a.fare).split(" ")[1]));
-			}		
-		});
-		nofkeys = arrPckgs.length;
-		if(nofkeys==0){
-			swal({   title: "No New Packages Here",   text: "You have accepted all packages near this location. Please come back later or continue searching for other locations.",   type: "error",   confirmButtonText: "OK" });
-    	}else{
-			document.getElementById("prevbtn").style.display="none"; showreslt(0);
-			drawroute(arrPckgs[0].pickuplat, arrPckgs[0].pickuplng, arrPckgs[0].delvlat, arrPckgs[0].delvlng);	
-		}
-		
-	}	
 	
-	},3000);
-	});	
-	*/
 		geoQuery.on("ready", function() {
 	nofkeys = Object.keys(vehiclesInQuery).length;
 	if(nofkeys==0 && geoQuery.radius()>1){
@@ -947,10 +908,11 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	var interval = setInterval(function(){
 	if(arrPckgs.length == nofkeys && nofkeys!=0 && acceptsloaded==1){			
 		clearInterval(interval);
+		$('#map').plainOverlay('hide');
 		if(flgg==0)
 		{
 		$('#map').plainOverlay('show',{
-			opacity:0.8,
+			opacity:0.5,
 			fillColor: '#000',
 			progress: function() { return $('<div style="font-size:26px;color:#fff;font-weight:bold;text-align:center">Customizing Requests<br> for your account...</div>'); }
 		});
@@ -1007,6 +969,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	});	
 	
 	function rfrshresults(center){
+		
 			for (var i = 0; i < hotSpotMapMarkers.length; i++)
 			hotSpotMapMarkers[i].setMap(null);
 		  document.getElementById("rqstgist").style.display="none";
@@ -1015,6 +978,11 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		  rsltshow = 0;
 		  path.setMap(null);
 		  map.setCenter(center);map.setZoom(12); ntfnd=0;
+		  $('#map').plainOverlay('show',{
+			opacity:0.5,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:26px;color:#fff;font-weight:bold;text-align:center">Loading...</div>'); }
+		});
 		  geoQuery.updateCriteria({center: [center.lat(), center.lng()],radius:30});
     }
 	
@@ -1388,7 +1356,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	function checkfirebase(email){	
 		if(clicklogin==1){
 			$('body').plainOverlay('show',{
-			opacity:0.8,
+			opacity:0.5,
 			fillColor: '#000',
 			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold;text-align:center">Syncing...</div>'); }
 			});
@@ -1774,7 +1742,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			return
 		};		
 		$('body').plainOverlay('show',{
-			opacity:0.8,
+			opacity:0.5,
 			fillColor: '#000',
 			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Working...</div>'); }
 		});
