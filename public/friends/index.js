@@ -1394,7 +1394,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			});
 		}		
 		usrnewmail = String(email).replace(/[^a-zA-Z0-9]/g, ' ');
-		firebaseRef.child("users").child(usrnewmail).once("value", function(snapshot) {			
+		firebaseRef.child("users").child(usrnewmail).child("account").once("value", function(snapshot) {			
 			if(snapshot.val()){
 				usrname = snapshot.child("usrname").val();
 				usremail=  snapshot.child("usremail").val();
@@ -1424,7 +1424,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 				if (inputValue === false) return false; 
 				if (otp != inputValue2) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
 				if(usremail=="" || usremail===undefined){ swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez})};
-				firebaseRef.child("users").child(usrnewmail).update({
+				firebaseRef.child("users").child(usrnewmail).child("account").update({
 					usrname:usrname, usremail:usremail, usrid:usrnewmail, usrphone:intno, usrfbimg:usrfbimg, usrfbid:usrfbid
 				});				
 				usrphone = intno;
