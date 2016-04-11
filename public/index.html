@@ -2024,7 +2024,8 @@ var $form_modal = $('.cd-user-modal'),
   if (response.authResponse) {
   if (response.status === 'connected') {  
   FB.api('/me?fields=id,email,name,picture.height(100)', function(response) {
-  usremail = String(response.email);
+   usrname = String(response.name); usremail = String(response.email);
+	  usrfbid = String(response.id); usrfbimg = String(response.picture.data.url);
 	checkfirebase(usremail)
 	//start();
     })
