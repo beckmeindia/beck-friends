@@ -527,16 +527,8 @@ Features-stack
     width: 406px;
     height: 1300px;
     left: 315px;
-    background: url("../img/discover.jpg") no-repeat center center;
+    background: url('http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/discover.jpg') no-repeat center center;
     }
-  .features .iphone-wrap {
-    width: 379px;
-    height: 1020px;
-    background: url("../img/confirm-pickup.jpg") no-repeat center center;
-    position: absolute;
-    left: 515px;
-    bottom: 129px;
-    z-index: 2; }
   .features .device-showcase {
     position: absolute;
     bottom: -365px;
