@@ -869,7 +869,7 @@ input:focus {
     <ul class="dropdown-menu md-whiteframe-z1">
       <li><a id="demo02" href="#acceptedModal">Accepted Requests</a></li>
       <li><a id="demo01" href="#animatedModal">Posted Requests</a></li>
-	  <li><a href="#" onclick="editnum()">Edit Contact Number</a></li>
+	  <li><a href="javascript: void(0)" onclick="editnum()">Edit Contact Number</a></li>
 	  <li><a href="#" onclick="logout()">Logout</a></li>
 	  <li style="display:none"><a id="demo03" href="#initModal" class="gn-icon gn-icon-search"></a></li>
     </ul>
@@ -987,7 +987,7 @@ input:focus {
 	  <input id="pickupaddr" type="text" ng-required="true">
     </md-input-container>
 	<md-input-container class="md-block" style="margin:0px">
-      <label style="font-size:14px">Pickup Contact Number (10-digit)</label>
+      <label style="font-size:14px">Pickup Contact Number</label>
 	  <input id="pickupnum" type="text" ng-required="true">
     </md-input-container>
 	</md-content>
@@ -1022,7 +1022,7 @@ input:focus {
       <input id="deliveryaddr" type="text" ng-required="true">
     </md-input-container>
 	<md-input-container class="md-block" style="margin:0px">
-	  <label style="font-size:14px">Delivery Contact Number (10-digit)</label>
+	  <label style="font-size:14px">Delivery Contact Number</label>
       <input id="deliverynum" type="text" ng-required="true">
     </md-input-container>
 	</md-content>
@@ -1192,9 +1192,7 @@ input:focus {
           <span class="stats stats-small">Verified</span>
         </div>
       </div>
-      <div class="card-footer-message" onclick="editnum()">
-        <h3 style="margin:10px auto"><i class="fa fa-pencil-square"></i> Edit Phone Number</h3>
-      </div>
+     
     </div>
   </div>
         <!--section class="profile">

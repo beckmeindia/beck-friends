@@ -498,10 +498,12 @@ $(document).ready(function(){
         history.pushState("jibberish", null, null);
         window.onpopstate = function () {
             history.pushState('newjibberish', null, null);
-			location.reload();          
+			//location.reload();          
         };
 	}
-	$("#searchloc").focus(function() { $(this).select(); } );
+	
+	$("#searchloc").click(function () { $(this).select() });
+	
 	var $form_modal = $('.cd-user-modal'),
 		$form_login = $form_modal.find('#cd-login'),
 		$form_signup = $form_modal.find('#cd-signup'),
@@ -908,7 +910,14 @@ $(document).ready(function(){
 	}
 	
 	function editnum(){
-		if(loggedin==1){swal({   title: "Update number",   text: "Please update to your latest contact number", html: true,   type: "warning",   showCancelButton: true,   confirmButtonColor: "#2bb1de",   confirmButtonText: "Update it",   closeOnConfirm: false }, function(){ smsending() })}else{befrlogin()};
+		if(loggedin==1){
+			if(usrphone){
+				swal({   title: "Change number",   text: "Your present registered number is +"+usrphone+". Are you sure you want to change it?", html: true,   type: "warning",   showCancelButton: true,   confirmButtonColor: "#2bb1de",   confirmButtonText: "Change it",   closeOnConfirm: false }, function(){ smsending() })
+			}
+				else {
+					swal({   title: "Update number",   text: "Please update to your latest contact number", html: true,   type: "warning",   showCancelButton: true,   confirmButtonColor: "#2bb1de",   confirmButtonText: "Update it",   closeOnConfirm: false}, function(){ smsending() })
+				}
+			}else{befrlogin()};
 	}
 	
 	function smsending(){
@@ -960,7 +969,7 @@ $(document).ready(function(){
 	function done(){
 		pickupnum = document.getElementById("pickupnum").value;
 		deliverynum = document.getElementById("deliverynum").value;
-		 var phoneno = /^\d{10}$/;
+		 var phoneno = /^\d{10,13}$/;
 		if(document.getElementById("searchloc3").value=="" || document.getElementById("pickupnum").value=="" || document.getElementById("pickupname").value=="" || document.getElementById("pickupaddr").value==""){
 			sweetAlert("Pickup Details", "Please fill all the details at Pickup Location!", "error");
 		}else if(document.getElementById("searchloc2").value=="" || document.getElementById("deliverynum").value=="" || document.getElementById("deliveryname").value=="" || document.getElementById("deliveryaddr").value==""){

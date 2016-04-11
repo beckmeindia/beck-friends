@@ -532,14 +532,15 @@ jQuery.fn.putCursorAtEnd = function() {
 	var nofkeys=0;
 	geoQuery.on("key_entered", function(vehicleId, vehicleLocation) {
 	vehiclesInQuery[vehicleId] = true;
-	firebaseRef.child("packages").child(vehicleId).child("order").once("value", function(dataSnapshot) {
+	firebaseRef.child("packages").child(vehicleId).once("value", function(dataSnapshot) {
     vehicle = dataSnapshot.val();
-    if (vehicle !== null && vehiclesInQuery[vehicleId] === true) {
+	if (vehicle !== null && vehiclesInQuery[vehicleId] === true) {
     vehiclesInQuery[vehicleId] = vehicle;
 	createVehicleMarker(vehicle,vehicleId);
-	}
-  });  
+	}	
 	});
+  });
+
 
 function isValidDate(dateString) {
   var regEx = /^\d{4}-\d{2}-\d{2}$/;
@@ -668,53 +669,45 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		document.getElementById("pfldelv").innerHTML = arrPckgs[rsltshow].delv;
 		//document.getElementById("pfldelvaddr").innerHTML = arrPckgs[rsltshow].deliveryaddr;
 		document.getElementById("pfldtym").innerHTML = arrPckgs[rsltshow].datetym;
-		imagz = arrPckgs[rsltshow].img64;
+		imagz = arrPckgs[rsltshow].img;
 		$("#pflbckg").css("background-image", "url('" + imagz + "')");
-		/*
-		firebaseRef.child("packages").child(arrPckgs[rsltshow].id).child("img").once("value", function(dataSnapshot) {
-			imagz = dataSnapshot.child("img64").val();
-			$("#pflbckg").css("background-image", "url('" + imagz + "')");
-		});
-		*/
 		},100);
 	}
 	
 	function createVehicleMarker(vehicle,vehicleId) {	
-	
 	var nwfr;
-	if(vehicle.fare != "GET QUOTE"){
-		nwfr = convcurr+" "+String(Math.round((vehicle.fare)/conval));	
+	if(vehicle.order.fare != "GET QUOTE"){
+		nwfr = convcurr+" "+String(Math.round((vehicle.order.fare)/conval));	
 	}else{
 		nwfr = "GET QUOTE";
 	}
 	arrPckgs.push({
 		status:"Not Approved Yet",
-		id: vehicle.id,
+		img: vehicle.img.img64,
+		id: vehicle.order.id,
 		fare: nwfr,
-		img64:vehicle.img64,
-		pickuplat: vehicle.pickuplat,
-		pickuplng: vehicle.pickuplng,
-		delvlat: vehicle.delvlat,
-		delvlng: vehicle.delvlng,
-		delv: vehicle.deliveryarea,
-		size: vehicle.pckgsize,
-		weight:vehicle.pckgweight,
-		date: vehicle.deliverydate,
-		time: vehicle.deliverytime,
-		datetym: "By "+vehicle.deliverydate+" " + vehicle.deliverytime,
-		pickup: vehicle.pickuparea,
-		pickupname: vehicle.pickupname,
-		pickupnum: vehicle.pickupnum,
-		delvname: vehicle.deliveryname,
-		delvnum: vehicle.deliverynum,		
-		pickupaddr: vehicle.pickupaddr,
-		deliveryaddr: vehicle.deliveryaddr,
-		usrid: vehicle.usrid,
-        usrname: vehicle.usrname,
-		usrphn: vehicle.usrphone,
+		pickuplat: vehicle.order.pickuplat,
+		pickuplng: vehicle.order.pickuplng,
+		delvlat: vehicle.order.delvlat,
+		delvlng: vehicle.order.delvlng,
+		delv: vehicle.order.deliveryarea,
+		size: vehicle.order.pckgsize,
+		weight:vehicle.order.pckgweight,
+		date: vehicle.order.deliverydate,
+		time: vehicle.order.deliverytime,
+		datetym: "By "+vehicle.order.deliverydate+" " + vehicle.order.deliverytime,
+		pickup: vehicle.order.pickuparea,
+		pickupname: vehicle.order.pickupname,
+		pickupnum: vehicle.order.pickupnum,
+		delvname: vehicle.order.deliveryname,
+		delvnum: vehicle.order.deliverynum,		
+		pickupaddr: vehicle.order.pickupaddr,
+		deliveryaddr: vehicle.order.deliveryaddr,
+		usrid: vehicle.order.usrid,
+        usrname: vehicle.order.usrname,
+		usrphn: vehicle.order.usrphone,
         sortable: true
     });
-	//return marker;
 	}
 	
 	function getReverseGeocodingData(lat, lng) {
@@ -1605,7 +1598,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			description = document.getElementById("descriptor").value;
 		}
 		
-		firebaseRef.child("packages").child(orderid).update({order:{description:description,id:orderid,lat:pickuplat,lon:pickuplng,usrid:usrid,usrphone:usrphone,usrname:usrname,usremail:usremail,pickuplat:pickuplat,pickuplng:pickuplng, delvlat:delvlat, delvlng:delvlng, pickuparea:pickuparea, pickupaddr:pickupaddr, pickupname:pickupname, pickupnum:pickupnum, deliveryaddr:deliveryaddr, deliveryarea:deliveryarea, deliverynum:deliverynum, deliveryname:deliveryname,deliverydate:deliverydate,deliverytime:deliverytime, pckgvalue:pckgvalue, pckgweight:pckgweight,pckgsize:pckgsize,fare:fare}},function(error){
+		firebaseRef.child("packages").child(orderid).update({order:{img64:img64,description:description,id:orderid,lat:pickuplat,lon:pickuplng,usrid:usrid,usrphone:usrphone,usrname:usrname,usremail:usremail,pickuplat:pickuplat,pickuplng:pickuplng, delvlat:delvlat, delvlng:delvlng, pickuparea:pickuparea, pickupaddr:pickupaddr, pickupname:pickupname, pickupnum:pickupnum, deliveryaddr:deliveryaddr, deliveryarea:deliveryarea, deliverynum:deliverynum, deliveryname:deliveryname,deliverydate:deliverydate,deliverytime:deliverytime, pckgvalue:pckgvalue, pckgweight:pckgweight,pckgsize:pckgsize,fare:fare}},function(error){
 		if (error) {
 			myNavigator.popPage('request.html', { animation : 'none' } );
 			swal({   title: "POST FAILED",   text: "Oops! Failed to post. Please try again",   type: "error",   confirmButtonText: "OK" });
