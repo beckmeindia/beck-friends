@@ -66,7 +66,7 @@ function($scope, $firebaseArray) {
 				var number = inputValue.replace(/[^\d]/g, '').length ;
 				if (inputValue === false) return false; 
 				if (otp != inputValue2) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
-				firebaseRef.child("users").child(usrid).update({usrphone:intno}); usrphone = intno;
+				firebaseRef.child("users").child(usrid).child("account").update({usrphone:intno}); usrphone = intno;
 				swal("Mobile Verified", "Congratulations. You have registered your phone number with BECK!", "success"); loggedin = 1;	$('#myanchor').click();	
 				})
 				});	
@@ -109,7 +109,7 @@ function($scope, $firebaseArray) {
 				var number = inputValue.replace(/[^\d]/g, '').length ;
 				if (inputValue === false) return false; 
 				if (otp != inputValue2) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
-				firebaseRef.child("users").child(usrid).update({usrphone:intno}); usrphone = intno;
+				firebaseRef.child("users").child(usrid).child("account").update({usrphone:intno}); usrphone = intno;
 				swal("Mobile Verified", "Congratulations. You have registered your phone number with BECK!", "success"); loggedin = 1;	$('#myanchor').click();	
 				})
 				});	
@@ -858,7 +858,7 @@ $(document).ready(function(){
 						$('body').plainOverlay('hide');
 						return;
 					} else {
-						firebaseRef.child("users").child(usrnewmail).update({usrname:usrname, usremail:usremail, usrid:usrnewmail, usrphone:intno});	
+						firebaseRef.child("users").child(usrnewmail).child("account").update({usrname:usrname, usremail:usremail, usrid:usrnewmail, usrphone:intno});	
 						usrphone = intno; usrid = usrnewmail; var regsclbck = "New user registered on friends : "+usrname+" "+usrphone+" "+usremail;
 						mailcall(regsclbck); $('body').plainOverlay('hide'); swal("Verification Succesful", "Congratulations. You are succesfully registered with BECK!", "success"); loggedin = 1;//	document.getElementById("mnuitm").style.display="none"; document.getElementById("tgnmlyn").style.paddingLeft = "20px";
 				document.getElementById("namehdr").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);		 
@@ -945,7 +945,7 @@ $(document).ready(function(){
 				var number = inputValue.replace(/[^\d]/g, '').length ;
 				if (inputValue === false) return false; 
 				if (otp != inputValue2) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
-				firebaseRef.child("users").child(usrid).update({
+				firebaseRef.child("users").child(usrid).child("account").update({
 					usrphone:intno
 				});				
 				usrphone = intno;

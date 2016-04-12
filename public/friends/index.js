@@ -32,7 +32,7 @@
 				var number = inputValue.replace(/[^\d]/g, '').length ;
 				if (inputValue === false) return false; 
 				if (otp != inputValue2) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
-				firebaseRef.child("users").child(usrid).update({usrphone:intno}); usrphone = intno;
+				firebaseRef.child("users").child(usrid).child("account").update({usrphone:intno}); usrphone = intno;
 				swal("Mobile Verified", "Congratulations. You have registered your phone number with BECK!", "success"); loggedin = 1;	$('#myanchor').click();	
 				})
 				});	
@@ -175,7 +175,7 @@
 				var number = inputValue.replace(/[^\d]/g, '').length ;
 				if (inputValue === false) return false; 
 				if (otp != inputValue2) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
-				firebaseRef.child("users").child(usrid).update({usrphone:intno}); usrphone = intno;
+				firebaseRef.child("users").child(usrid).child("account").update({usrphone:intno}); usrphone = intno;
 				swal("Mobile Verified", "Congratulations. You have registered your phone number with BECK!", "success"); loggedin = 1;	$('#myanchor').click();	
 				})
 				});	
@@ -791,7 +791,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
     orphan: true,
     title: "What is BECK Friends?",
 	backdrop:true,
-    content: "A global peer-to-peer marketplace for sending anything anywhere economically with an opportunity to earn as you travel"
+    content: "You can do two things with it. Send anything anwhere or Earn as you travel"
   },   {
     element: "#locasion", 
     title: "Change Locations",
@@ -811,7 +811,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
     title: "New Request",
 	placement: "bottom",
 	backdrop:true,
-    content: "You can post a Request when you want to send"
+    content: "You can post a Request when you want to send anything anywhere"
   },
   {
     element: "#mnulft",
@@ -1338,7 +1338,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 				var number = inputValue.replace(/[^\d]/g, '').length ;
 				if (inputValue === false) return false; 
 				if (otp != inputValue2) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
-				firebaseRef.child("users").child(usrid).update({
+				firebaseRef.child("users").child(usrid).child("account").update({
 					usrphone:intno
 				});				
 				usrphone = intno;
@@ -1791,7 +1791,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 						$('body').plainOverlay('hide');
 						return;
 					} else {
-						firebaseRef.child("users").child(usrnewmail).update({usrname:usrname, usremail:usremail, usrid:usrnewmail, usrphone:intno});	
+						firebaseRef.child("users").child(usrnewmail).child("account").update({usrname:usrname, usremail:usremail, usrid:usrnewmail, usrphone:intno});	
 						usrphone = intno; usrid = usrnewmail; var regsclbck = "New user registered on friends : "+usrname+" "+usrphone+" "+usremail;
 						mailcall(regsclbck); $('body').plainOverlay('hide'); swal("Verification Succesful", "Congratulations. You are succesfully registered with BECK!", "success"); loggedin = 1;	$('#myanchor').click();	
 				document.getElementById("namehdr").innerHTML += 'Hi ' + usrname.split(" ")[0].substring(0, 10);		 
