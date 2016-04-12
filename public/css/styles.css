@@ -663,7 +663,7 @@ Features-stack
 .testimonial-slider
 ========================================================================== */
 .testimonial-slider {
-  background: url("../img/testimonials-bg.jpg") no-repeat center center;
+  background: url("http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/testimonials-bg.jpg") no-repeat center center;
   background-size: cover; }
   .testimonial-slider .avatar {
     width: 82px;
