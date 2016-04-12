@@ -972,9 +972,9 @@ $(document).ready(function(){
 		pickupnum = document.getElementById("pickupnum").value;
 		deliverynum = document.getElementById("deliverynum").value;
 		 var phoneno = /^\d{10,13}$/;
-		if(document.getElementById("searchloc3").value=="" || document.getElementById("pickupnum").value=="" || document.getElementById("pickupname").value=="" || document.getElementById("pickupaddr").value==""){
+		if(document.getElementById("searchloc3").value=="" || document.getElementById("pickupnum").value=="" || document.getElementById("pickupname").value==""){
 			sweetAlert("Pickup Details", "Please fill all the details at Pickup Location!", "error");
-		}else if(document.getElementById("searchloc2").value=="" || document.getElementById("deliverynum").value=="" || document.getElementById("deliveryname").value=="" || document.getElementById("deliveryaddr").value==""){
+		}else if(document.getElementById("searchloc2").value=="" || document.getElementById("deliverynum").value=="" || document.getElementById("deliveryname").value==""){
 			sweetAlert("Delivery Details", "Please fill all the details at Delivery Location!", "error");
 		}else if(!pickupnum.match(phoneno)){
 			sweetAlert("Pickup Contact", "Please fill a valid 10-digit number for Pickup Location contact number", "error");
