@@ -1163,15 +1163,18 @@ $(document).ready(function(){
 	
 	function resizeImage(img) {
     img64 = imageToDataUri(img);		
-	if(img64=="data:,"||img64=="data:image/jpeg;"){
+	/*if(img64=="data:,"||img64=="data:image/jpeg;"){
 		img64="";
 		sweetAlert("Oops...", "There is some problem with this image. Please select the image again or another one that is similar", "error");
 	}else{
+		*/
+		setTimeout(function(){
 		document.getElementById("packagephoto").style.display = "none";
         document.getElementById("card").style.backgroundImage = "url('"+img64+"')";
 		document.getElementById("card").style.backgroundSize = "contain"; document.getElementById("card").style.backgroundPosition = "center"; document.getElementById("card").style.backgroundRepeat = "no-repeat";
+		},2000)
 		
-	}
+	//}
 	}
 	
 	function imageToDataUri(img) {
@@ -1197,8 +1200,12 @@ $(document).ready(function(){
 	function card(){	
 	document.getElementById("files").onchange = function () {
     reader = new FileReader();
-    reader.onload = function (e) {      
-	img = "url('"+e.target.result+"')"; var imgbckz = new Image; imgbckz.src = String(event.target.result);resizeImage(imgbckz);  
+    reader.onload = function (e) {
+	img = "url('"+e.target.result+"')"; var imgbckz = new Image();
+	imgbckz.src = String(event.target.result);
+	imgbckz.onload = function(){
+	resizeImage(imgbckz)	
+	};
 	};
     reader.readAsDataURL(this.files[0]);
 	}	
