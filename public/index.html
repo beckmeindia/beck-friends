@@ -1761,7 +1761,7 @@ var $form_modal = $('.cd-user-modal'),
                     <div class="flexslider">
                         <ul class="slides">
                             <li>
-                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/toi.jpg" alt=""></div>
+                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/toi.jpg" width="82px" height="82px" alt="Times of India"></div>
                                 <p style="color:white;">"BECK Technology Ventures launches peer-to-peer marketplace"</p>
 								<p style="color:white;font-style: normal;font-size:22px">Times of India</p>
                                 <ul class="social-buttons">
@@ -1769,7 +1769,7 @@ var $form_modal = $('.cd-user-modal'),
                                 </ul>
                             </li>
                             <li>
-                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/Firstpost.jpg" alt=""></div>
+                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/Firstpost.jpg" width="82px" height="82px" alt="FIRST POST"></div>
                                 <p style="color:white;">"Beck Technology launches Beck Friends to disrupt global logistics space"</p>
                                 <p style="color:white;font-style: normal;font-size:22px">FIRST POST</p>
                                 <ul class="social-buttons">
@@ -1777,7 +1777,7 @@ var $form_modal = $('.cd-user-modal'),
                                 </ul>
                             </li>
                             <li>
-                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/iifl.jpg" alt=""></div>
+                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/iifl.jpg" width="82px" height="82px" alt="India Infoline"></div>
                                  <p style="color:white;">"BECK Technology Ventures launches BECK Friends to disrupt global logistics space"</p>
                                 <p style="color:white;font-style: normal;font-size:22px">India Infoline</p>
                                    <ul class="social-buttons">
@@ -1785,7 +1785,7 @@ var $form_modal = $('.cd-user-modal'),
                                 </ul>
                             </li>							
 							<li>
-                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/thetechportal.jpg" alt=""></div>
+                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/thetechportal.jpg" width="82px" height="82px" alt="The Tech Portal"></div>
                                  <p style="color:white;">"Logistics Startup BECK Launches A New Peer-To-Peer Logistics Solution, BECK Friends"</p>
                                 <p style="color:white;font-style: normal;font-size:22px">The Tech Portal</p>
                                    <ul class="social-buttons">
@@ -1793,7 +1793,7 @@ var $form_modal = $('.cd-user-modal'),
                                 </ul>
                             </li>
 							<li>
-                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/silicon-india.jpg" alt=""></div>
+                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/silicon-india.jpg" width="82px" height="82px" alt="Silicon India"></div>
                                  <p style="color:white;">"BECK Technology Ventures Launches BECK Friends"</p>
                                 <p style="color:white;font-style: normal;font-size:22px">Silicon India</p>
                                    <ul class="social-buttons">
@@ -1801,7 +1801,7 @@ var $form_modal = $('.cd-user-modal'),
                                 </ul>
                             </li>
 							<li>
-                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/dna.png" alt=""></div>
+                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/dna.png" width="82px" height="82px" alt="DNA India"></div>
                                  <p style="color:white;">"BECK: An anytime delivery app within the city at the click of a button!"</p>
                                 <p style="color:white;font-style: normal;font-size:22px">DNA India</p>
                                    <ul class="social-buttons">
@@ -2057,12 +2057,12 @@ var $form_modal = $('.cd-user-modal'),
     }
 function checkfirebase(email){    
     usrnewmail = String(email).replace(/[^a-zA-Z0-9]/g, ' ');
-	$('body').plainOverlay('show',{
+    $('body').plainOverlay('show',{
       opacity:0.8,
       fillColor: '#000',
       progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Working...</div>'); }
     });
-    firebaseRef.child("users").child(usrnewmail).child("account").once("value", function(snapshot) {    
+    firebaseRef.child("users").child(usrnewmail).child("account").once("value", function(snapshot) {     
       if(snapshot.val()){
         usrname = snapshot.child("usrname").val();
         usremail=  snapshot.child("usremail").val();
@@ -2070,16 +2070,22 @@ function checkfirebase(email){
         usrid = snapshot.child("usrid").val();
         fbflag = 0; loggedin = 1;$('#myanchor').click();start();      
       }else if(clicklogin==1){
-        if(usremail=="" || usremail===undefined){ swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez})};
+        if(!usremail){ swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez;firebaseRef.child("users").child(usrnewmail).child("account").update({
+          usrname:usrname, usremail:usremail, usrid:usrnewmail, usrfbimg:usrfbimg, usrfbid:usrfbid
+        }); 
+        var regsclbck = "New user registered on friends : "+usrname+" "+usremail; var tempemail = "";var temphone = ""; mailcall(regsclbck,tempemail,temphone); $('#myanchor').click(); start()
+        })
+        }
+        else{
         firebaseRef.child("users").child(usrnewmail).child("account").update({
           usrname:usrname, usremail:usremail, usrid:usrnewmail, usrfbimg:usrfbimg, usrfbid:usrfbid
         }); 
         var regsclbck = "New user registered on friends : "+usrname+" "+usremail;
-		var tempemail = "";var temphone = "";
+        var tempemail = "";var temphone = "";
         mailcall(regsclbck,tempemail,temphone); 
-         $('#myanchor').click(); 
-         start();
-
+        $('#myanchor').click(); 
+        start();
+        }
         }       
     });
 }
