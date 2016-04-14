@@ -1668,7 +1668,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
     reader = new FileReader();
     reader.onload = function (e) {
 	img = "url('"+e.target.result+"')"; var imgbckz = new Image();
-	imgbckz.src = String(event.target.result);
+	imgbckz.src = String(e.target.result);
 	imgbckz.onload = function(){
 	resizeImage(imgbckz)	
 	};

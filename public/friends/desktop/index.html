@@ -975,16 +975,16 @@ input:focus {
         <md-content id="lala">
 	<md-input-container class="md-icon-float md-block" style="margin-bottom:0px">
       <label style="padding-left:40px">Pickup Address</label>
-      <img src="search.png" style="width:28px;margin-top:0px;display:inline;position:absolute;cursor:pointer">      
+      <img src="search.png" style="width:28px;margin-top:0px;display:inline;position:absolute;cursor:pointer;left:0">      
 	  <input id="searchloc3" type="text" ng-required="true" style="padding-left:40px" placeholder="Type Here">
     </md-input-container>		
     <md-input-container class="md-icon-float md-block" style="margin:0px">
       <label style="font-size:14px">Pickup Contact Name</label>
 	  <input id="pickupname" type="text" ng-required="true">
     </md-input-container>    
-    <md-input-container class="md-block" style="margin:0px;display:none">
-      <label style="font-size:14px">Pickup Contact Address</label>
-	  <input id="pickupaddr" type="text" ng-required="true" value="la">
+    <md-input-container class="md-block" style="margin:0px;">
+      <label style="font-size:14px">Pickup Contact Address (optional)</label>
+	  <input id="pickupaddr" type="text" ng-required="true" value="">
     </md-input-container>
 	<md-input-container class="md-block" style="margin:0px">
       <label style="font-size:14px">Pickup Contact Number</label>
@@ -1010,16 +1010,16 @@ input:focus {
         <md-content id="delvlala" class="md-no-momentum inputdemoIcons"> 
 	<md-input-container class="md-icon-float md-block" style="margin-bottom:0px">
       <label style="padding-left:40px">Delivery Address</label>
-	  <img src="search.png" style="width:28px;margin-top:0px;display:inline;position:absolute;cursor:pointer">
+	  <img src="search.png" style="width:28px;margin-top:0px;display:inline;position:absolute;cursor:pointer;left:0">
       <input  id="searchloc2" type="text" ng-required="true" style="padding-left:40px" placeholder="Type Here">
     </md-input-container>		
 	<md-input-container class="md-icon-float md-block" style="margin:0px">
       <label style="font-size:14px">Delivery Contact Name</label>
       <input id="deliveryname" type="text" ng-required="true">
     </md-input-container>    
-	<md-input-container class="md-block" style="margin:0px;display:none">
-	  <label style="font-size:14px">Delivery Contact Address</label>
-      <input id="deliveryaddr" type="text" ng-required="true" value="la">
+	<md-input-container class="md-block" style="margin:0px;">
+	  <label style="font-size:14px">Delivery Contact Address (optional)</label>
+      <input id="deliveryaddr" type="text" ng-required="true" value="">
     </md-input-container>
 	<md-input-container class="md-block" style="margin:0px">
 	  <label style="font-size:14px">Delivery Contact Number</label>

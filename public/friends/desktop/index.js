@@ -7,7 +7,7 @@
 	var clicklogin=0;
 	var arrPckgs = []; var rsltshow = 0;  var arraccepts = []; var revrsdone = 0; var mycenter; var lognclckd = 0; var flgg=0;
 
-angular.module('MyApp',['ngMaterial',"firebase"])
+angular.module('MyApp',['ngMaterial',"firebase"]) 
  .controller('PositionDemoCtrl', function DemoCtrl($mdDialog) {
     var originatorEv;
     this.openMenu = function($mdOpenMenu, ev) {
@@ -1202,7 +1202,7 @@ $(document).ready(function(){
     reader = new FileReader();
     reader.onload = function (e) {
 	img = "url('"+e.target.result+"')"; var imgbckz = new Image();
-	imgbckz.src = String(event.target.result);
+	imgbckz.src = String(e.target.result);
 	imgbckz.onload = function(){
 	resizeImage(imgbckz)	
 	};
