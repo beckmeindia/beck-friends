@@ -649,11 +649,9 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	
 	if(i==0){
 		//alert(document.getElementById('rqstgist').clientHeight+140);
-		//document.getElementById("map").style.height = 'calc(100vh - '+(document.getElementById('rqstgist').clientHeight+140)+'px)'
+		document.getElementById("map").style.height = 'calc(100% - 330px)'
 		google.maps.event.trigger(map, 'resize');
 	}
-	map.setZoom(15);
-	map.panTo(new google.maps.LatLng(arrPckgs[i].pickuplat, arrPckgs[i].pickuplng));
 	
 	}
 	
@@ -974,7 +972,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			for (var i = 0; i < hotSpotMapMarkers.length; i++)
 			hotSpotMapMarkers[i].setMap(null);
 		  document.getElementById("rqstgist").style.display="none";
-		  //document.getElementById("map").style.height = '100%';
+		  document.getElementById("map").style.height = '100%';
 		  google.maps.event.trigger(map, 'resize');
 		  rsltshow = 0;
 		  path.setMap(null);
