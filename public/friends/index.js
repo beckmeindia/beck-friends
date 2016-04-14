@@ -648,7 +648,8 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	document.getElementById("rqstgist").style.display="block";
 	
 	if(i==0){
-		document.getElementById("map").style.height = 'calc(100% - '+(document.getElementById('rqstgist').clientHeight+140)+'px)'
+		//alert(document.getElementById('rqstgist').clientHeight+140);
+		//document.getElementById("map").style.height = 'calc(100vh - '+(document.getElementById('rqstgist').clientHeight+140)+'px)'
 		google.maps.event.trigger(map, 'resize');
 	}
 	map.setZoom(15);
@@ -973,7 +974,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 			for (var i = 0; i < hotSpotMapMarkers.length; i++)
 			hotSpotMapMarkers[i].setMap(null);
 		  document.getElementById("rqstgist").style.display="none";
-		  document.getElementById("map").style.height = '100%';
+		  //document.getElementById("map").style.height = '100%';
 		  google.maps.event.trigger(map, 'resize');
 		  rsltshow = 0;
 		  path.setMap(null);
@@ -1079,7 +1080,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	
 	function receipt(){
 		phoneNumDelv = document.getElementById("deliverynum").value.replace(/[^\d]/g, '');
-		if(document.getElementById('deliveryarea').value=="" || document.getElementById('deliveryname').value=="" || document.getElementById('deliverynum').value=="" || document.getElementById('deliveryaddr').value==""){
+		if(document.getElementById('deliveryarea').value=="" || document.getElementById('deliveryname').value=="" || document.getElementById('deliverynum').value==""){
 			swal({   title: "DELIVERY DETAILS",   text: "Please fill all Pickup Details",   type: "error",   confirmButtonText: "OK" });
 		}		
 		else if(phoneNumDelv.length < 10) {
@@ -1265,7 +1266,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	var phoneNumPick, phoneNumDelv;
 	function showdelivery(){
 		phoneNumPick = document.getElementById("pickupnum").value.replace(/[^\d]/g, '');
-		if(document.getElementById('pickuparea').value=="" || document.getElementById('pickupname').value=="" || document.getElementById('pickupnum').value=="" || document.getElementById('pickupaddr').value==""){
+		if(document.getElementById('pickuparea').value=="" || document.getElementById('pickupname').value=="" || document.getElementById('pickupnum').value==""){
 			swal({   title: "PICKUP DETAILS",   text: "Please fill all Pickup Details",   type: "error",   confirmButtonText: "OK" });
 		}		
 		else if(phoneNumPick.length < 10) {
