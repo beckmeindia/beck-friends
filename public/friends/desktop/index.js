@@ -1167,11 +1167,16 @@ $(document).ready(function(){
 		img64="";
 		sweetAlert("Oops...", "There is some problem with this image. Please select the image again or another one that is similar", "error");
 	}else{
-		*/
+		*/		
 		setTimeout(function(){
+			if(img64=="" || img64=="data:," || img64=="data:image/jpeg;"){
+		img64="";
+		sweetAlert("Oops...", "There is some problem uploading this image. Please Try this image again or another one that is similar", "error");
+		}else{
 		document.getElementById("packagephoto").style.display = "none";
-        document.getElementById("card").style.backgroundImage = "url('"+img64+"')";
-		document.getElementById("card").style.backgroundSize = "contain"; document.getElementById("card").style.backgroundPosition = "center"; document.getElementById("card").style.backgroundRepeat = "no-repeat";
+        document.getElementById("card").style.background = "url('"+img64+"') center/contain no-repeat";
+		//document.getElementById("card").style.backgroundSize = "contain"; document.getElementById("card").style.backgroundPosition = "center"; document.getElementById("card").style.backgroundRepeat = "no-repeat";
+		}
 		},2000)
 		
 	//}
@@ -1241,6 +1246,18 @@ $(document).ready(function(){
 		window.location.reload();
 	}
 	map.panTo(new google.maps.LatLng(arrPckgs[i].pickuplat, arrPckgs[i].pickuplng));	
+	}
+	
+	function shwrtagn(){
+		drawroute(arrPckgs[rsltshow].pickuplat, arrPckgs[rsltshow].pickuplng, arrPckgs[rsltshow].delvlat, arrPckgs[rsltshow].delvlng);
+	}
+	
+	function pickfocus(){
+		map.setCenter(new google.maps.LatLng(arrPckgs[rsltshow].pickuplat, arrPckgs[rsltshow].pickuplng)); map.setZoom(16);
+	}
+	
+	function delvfocus(){
+		map.setCenter(new google.maps.LatLng(arrPckgs[rsltshow].delvlat, arrPckgs[rsltshow].delvlng)); map.setZoom(16);
 	}
 	
 	function shownext(){
