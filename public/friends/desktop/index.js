@@ -307,7 +307,7 @@ function($scope, $firebaseArray) {
 		document.getElementById("pckgctr").innerHTML="Loading...";
 			for (var i = 0; i < hotSpotMapMarkers.length; i++)
 			hotSpotMapMarkers[i].setMap(null);
-		  document.getElementById("rqstgist").style.display="none";
+		  //document.getElementById("rqstgist").style.display="none";
 		  google.maps.event.trigger(map, 'resize');
 		  rsltshow = 0;
 		  if(path) path.setMap(null);
@@ -410,7 +410,7 @@ var nofkeys=0;
 			$('#map').plainOverlay('hide');
 		setTimeout(function(){swal({   title: "No Live Requests",   text: "Presently there are no live requests around this location. You can add a request here if you want or search live requests for another location",   timer: 8000 });
 		document.getElementById("pckgctr").innerHTML = "No Requests Found"},3000);
-		document.getElementById("rqstgist").style.display="none";
+		//document.getElementById("rqstgist").style.display="none";
 		}
 		
 	}
@@ -440,7 +440,7 @@ var nofkeys=0;
 		nofkeys = arrPckgs.length;
 		if(nofkeys==0){
 			document.getElementById("pckgctr").innerHTML = "Searching More...";
-			document.getElementById("rqstgist").style.display="none";
+			//document.getElementById("rqstgist").style.display="none";
 			rfrshresults(mycenter);
 			for (var i = 0; i < hotSpotMapMarkers.length; i++)
 			hotSpotMapMarkers[i].setMap(null);
@@ -1240,7 +1240,7 @@ $(document).ready(function(){
 	document.getElementById("pdatetym").innerHTML = arrPckgs[i].datetym;
 	document.getElementById("ppickup").innerHTML = arrPckgs[i].pickup;	
 	document.getElementById("pdelv").innerHTML = arrPckgs[i].delv;	
-	document.getElementById("rqstgist").style.display="block";
+	//document.getElementById("rqstgist").style.display="block";
 	$("#tflbckg").css("background-image", "url('" + arrPckgs[i].img + "')");
 	if(i==0&&map===undefined){
 		window.location.reload();
@@ -1263,7 +1263,7 @@ $(document).ready(function(){
 	function shownext(){
 		if((rsltshow+1)<nofkeys){
 			rsltshow++;
-			$("#tflbckg").css("background-image", "");
+			$("#tflbckg").css("background-image", "url('fillrbckg.png')");
 			showreslt(rsltshow);
 			drawroute(arrPckgs[rsltshow].pickuplat, arrPckgs[rsltshow].pickuplng, arrPckgs[rsltshow].delvlat, arrPckgs[rsltshow].delvlng);
 		}		
@@ -1273,7 +1273,7 @@ $(document).ready(function(){
 	function showprev(){
 		if(rsltshow>0){
 			rsltshow--;
-			$("#tflbckg").css("background-image", "");
+			$("#tflbckg").css("background-image", "url('fillrbckg.png')");
 			showreslt(rsltshow);
 			drawroute(arrPckgs[rsltshow].pickuplat, arrPckgs[rsltshow].pickuplng, arrPckgs[rsltshow].delvlat, arrPckgs[rsltshow].delvlng);
 		}			
@@ -1568,10 +1568,10 @@ $(document).ready(function(){
 			for (var i = 0; i < hotSpotMapMarkers.length; i++)
 			hotSpotMapMarkers[i].setMap(null);
 			if(path) path.setMap(null); 
-			document.getElementById("rqstgist").style.display="none";
+			//document.getElementById("rqstgist").style.display="none";
 			document.getElementById("pckgctr").innerHTML="Loading...";
 			var address = ''; rsltshow = 0; google.maps.event.trigger(map, 'resize');
-			$("#tflbckg").css("background-image", "");
+			$("#tflbckg").css("background-image", "url('fillrbckg.png')");
 			$('#namehdr2').trigger('click');			
 			document.getElementById("mnuitm2").style.display="block";	
 			$('.close-initModal').trigger('click');		
@@ -1612,10 +1612,15 @@ $(document).ready(function(){
 			for (var i = 0; i < hotSpotMapMarkers.length; i++)
 			hotSpotMapMarkers[i].setMap(null);
 			if(path) path.setMap(null); 
-			document.getElementById("rqstgist").style.display="none";
+			//document.getElementById("rqstgist").style.display="none";
 			document.getElementById("pckgctr").innerHTML="Loading...";
 			var address = ''; rsltshow = 0; google.maps.event.trigger(map, 'resize');
-			$("#tflbckg").css("background-image", "");
+			$("#tflbckg").css("background-image", "url('fillrbckg.png')");
+			document.getElementById("pfare").innerHTML = '';
+			document.getElementById("psize").innerHTML = '<img src="line.png" style="width:70%;display:inline;">';
+			document.getElementById("ppickup").innerHTML = '<img src="line.png" style="width:100%;display:inline;">';
+			document.getElementById("pdelv").innerHTML = '<img src="line.png" style="width:100%;display:inline;">';
+			document.getElementById("pdatetym").innerHTML = '<img src="line.png" style="width:100%;display:inline;">';
 			$('#map').plainOverlay('show',{opacity:0.8, fillColor: '#000', progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Loading...</div>') }});
 			if (place.address_components) {
             address = [
