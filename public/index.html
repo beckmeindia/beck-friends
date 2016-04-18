@@ -2072,7 +2072,7 @@ function checkfirebase(email){
         usrid = snapshot.child("usrid").val();
         fbflag = 0; loggedin = 1;$('#myanchor').click();start();      
       }else if(clicklogin==1){
-        if(!usremail){ swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez;firebaseRef.child("users").child(usrnewmail).child("account").update({
+        if(usremail === undefined || usremail == null){ swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez;firebaseRef.child("users").child(usrnewmail).child("account").update({
           usrname:usrname, usremail:usremail, usrid:usrnewmail, usrfbimg:usrfbimg, usrfbid:usrfbid
         }); 
         var regsclbck = "New user registered on friends : "+usrname+" "+usremail; var tempemail = "";var temphone = ""; mailcall(regsclbck,tempemail,temphone); $('#myanchor').click(); start()
