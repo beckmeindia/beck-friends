@@ -230,6 +230,7 @@
 				*/
 			});
 			$scope.posts = $firebaseArray(firebaseRef.child("users").child(usrid).child("posts"));
+			/*
 			$scope.posts.$loaded()
 			.then(function(arr){
 				var interval = setInterval(function(){
@@ -237,12 +238,12 @@
 						clearInterval(interval);
 						for (var key in arr) {
 					if(arr[key].$id === undefined || arr[key].fare == 'GET QUOTE'){}else{
-					arr[key].fare = convcurr+" "+ Math.round(Number(arr[key].fare)/conval);
+					arr[key].fare = convcurr+" "+ Math.round(Number(String(arr[key].fare).split(" ")[1])/conval);
 					}
 				}				
 				}
 				},1500);
-/*				
+							
 				if(arr.$getRecord("notification").$value == "no"){
 					document.getElementById("notif2").style.display="none";					
 				}
@@ -250,8 +251,9 @@
 					document.getElementById("notif2").style.display="inline";
 					document.getElementById("notif").style.display="inline";
 				}
-				*/
+				
 			});
+			*/
 		  }
 		},2000);	
 		}
@@ -1075,7 +1077,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		summbrk = 0;
 		}		
 	}
-	
+	var fare2="";
 	function receipt(){
 		phoneNumDelv = document.getElementById("deliverynum").value.replace(/[^\d]/g, '');
 		if(document.getElementById('deliveryarea').value=="" || document.getElementById('deliveryname').value=="" || document.getElementById('deliverynum').value==""){
@@ -1236,6 +1238,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 				else{
 				newfrconv = "GET QUOTE";
 				}
+				fare2 = newfrconv;
 				document.getElementById("fare").innerHTML = newfrconv;
 				document.getElementById("postbtn").style.display = "block";
 				document.getElementById("card2").style.backgroundImage = "url('"+img64+"')";
@@ -1576,7 +1579,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 		});
 		var orderid2 = orderid+"D";
 		firebaseRef.child("packages").child(orderid).update({img:{img64:img64}}).then(function() {
-		firebaseRef.child("users").child(usrid).child("posts").child(orderid).update({status:"Waiting for Accept",img64:img64,description:description,id:orderid,lat:pickuplat,lon:pickuplng,usrid:usrid,usrphone:usrphone,usrname:usrname,usremail:usremail,pickuplat:pickuplat,pickuplng:pickuplng, delvlat:delvlat, delvlng:delvlng, pickuparea:pickuparea, pickupaddr:pickupaddr, pickupname:pickupname, pickupnum:pickupnum, deliveryaddr:deliveryaddr, deliveryarea:deliveryarea, deliverynum:deliverynum, deliveryname:deliveryname,deliverydate:deliverydate,deliverytime:deliverytime, pckgvalue:pckgvalue, pckgweight:pckgweight,pckgsize:pckgsize,fare:fare});
+		firebaseRef.child("users").child(usrid).child("posts").child(orderid).update({status:"Waiting for Accept",img64:img64,description:description,id:orderid,lat:pickuplat,lon:pickuplng,usrid:usrid,usrphone:usrphone,usrname:usrname,usremail:usremail,pickuplat:pickuplat,pickuplng:pickuplng, delvlat:delvlat, delvlng:delvlng, pickuparea:pickuparea, pickupaddr:pickupaddr, pickupname:pickupname, pickupnum:pickupnum, deliveryaddr:deliveryaddr, deliveryarea:deliveryarea, deliverynum:deliverynum, deliveryname:deliveryname,deliverydate:deliverydate,deliverytime:deliverytime, pckgvalue:pckgvalue, pckgweight:pckgweight,pckgsize:pckgsize,fare:fare2});
 		firebaseRef.child("users").child(usrid).child("posts").update({notification:"yes"});
 		geoFire.set(orderid, [pickuplat, pickuplng]).then(function() {}, function(error) {
 		myNavigator.popPage('request.html', { animation : 'none' } );

@@ -1642,7 +1642,7 @@ var $form_modal = $('.cd-user-modal'),
                     <p class="fieldset"  style="text-align:center">
                         <label for="accept-terms" style="font-size:10px">By signing up, you agree to the <a href="terms.html" target="_blank" style="text-decoration:none">Terms</a></label>
                     </p>
-                <p class="cd-form-bottom-message"><a onclick="start();" style="cursor:pointer;text-decoration:none;color:#d3d3d3">Skip & Get started</a></p>
+                <p class="cd-form-bottom-message"><a onclick="start();" style="cursor:pointer;text-decoration:none;color:#d3d3d3;opacity:0.5">Skip & Get started</a></p>
             </div>
             <!--
            <div id="cd-reset-password">
@@ -1776,6 +1776,14 @@ var $form_modal = $('.cd-user-modal'),
                                  <li><a href="http://www.firstpost.com/business/beck-technology-ventures-launch-beck-friends-to-disrupt-global-logistics-space-2713596.html" target="_blank" class="social-btn"><i class="fa fa-newspaper-o"></i></a></li>
                                 </ul>
                             </li>
+							<li>
+                                <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/iamwire.jpeg" alt=""></div>
+                                 <p style="color:white;">"BECK Friends: A Peer to Peer Delivery Service Allowing You to Earn While Traveling!"</p>
+                                <p style="color:white;font-style: normal;font-size:22px">iamwire</p>
+                                   <ul class="social-buttons">
+                                 <li><a href="http://www.iamwire.com/2016/04/beck-friends-peer-peer-delivery-service/134616" target="_blank" class="social-btn"><i class="fa fa-newspaper-o"></i></a></li>
+                                </ul>
+                            </li>
                             <li>
                                 <div class="avatar" style="border-radius:10px"><img src="http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/iifl.jpg" alt=""></div>
                                  <p style="color:white;">"BECK Technology Ventures launches BECK Friends to disrupt global logistics space"</p>
@@ -1808,6 +1816,7 @@ var $form_modal = $('.cd-user-modal'),
                                  <li><a href="http://www.dnaindia.com/locality/mumbai-north/beck-anytime-delivery-app-within-city-click-button-81605" target="_blank" class="social-btn"><i class="fa fa-newspaper-o"></i></a></li>
                                 </ul>
                             </li>
+							
                         </ul>
                     </div>
                 </div>
@@ -1961,7 +1970,7 @@ var $form_modal = $('.cd-user-modal'),
     <script>
 
     var firebaseRef = new Firebase("https://beckrequest.firebaseio.com");
-	var usremail;
+	var usremail="",usrfbid="",usrname="",usrfbimg="";
 
 
 
@@ -2057,6 +2066,7 @@ var $form_modal = $('.cd-user-modal'),
                  window.location="https://www.beckfriends.com/friends/";
             }
     }
+	
 function checkfirebase(email){    
     usrnewmail = String(email).replace(/[^a-zA-Z0-9]/g, ' ');
 	$('body').plainOverlay('show',{
@@ -2072,7 +2082,10 @@ function checkfirebase(email){
         usrid = snapshot.child("usrid").val();
         fbflag = 0; loggedin = 1;$('#myanchor').click();start();      
       }else if(clicklogin==1){
-        if(usremail === undefined || usremail == null){ swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez;firebaseRef.child("users").child(usrnewmail).child("account").update({
+	    if( typeof usrnewmail === 'undefined' || usrnewmail=="undefined" || usrnewmail === null || usremail == "" || usrnewmail == ""){
+		$('body').plainOverlay('hide'); $('#myanchor').click();
+		swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: false,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez;
+		firebaseRef.child("users").child(usrnewmail).child("account").update({
           usrname:usrname, usremail:usremail, usrid:usrnewmail, usrfbimg:usrfbimg, usrfbid:usrfbid
         }); 
         var regsclbck = "New user registered on friends : "+usrname+" "+usremail; var tempemail = "";var temphone = ""; mailcall(regsclbck,tempemail,temphone); $('#myanchor').click(); start()

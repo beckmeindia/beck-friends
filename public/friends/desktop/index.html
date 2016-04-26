@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<meta name="google-signin-client_id" content="654542854137-ckf2kmqv9lpr41tt9lj8vmi658icjsb4.apps.googleusercontent.com">
-		<title>BECK friends</title>
+		<title>BECK Friends | Send anything anywhere. Earn as you travel.</title>
 		<meta name="description" content="Peer-to-peer marketplace for sending anything anywhere" />
 		<meta name="keywords" content="Peer-to-peer marketplace for sending anything anywhere" />
 		<meta name="author" content="BeckFriends" />		
@@ -26,7 +26,7 @@
 		</script>
 	<style>
 	.close-animatedModal{
-	color:#fff
+	color:#000
 	}
 	.ng-scope{
 	text-transform:none;
@@ -874,28 +874,12 @@ input:focus {
 	  <li style="display:none"><a id="demo03" href="#initModal" class="gn-icon gn-icon-search"></a></li>
     </ul>
   </md-button></li>				
-				<!--li id="mnuitm" class="gn-trigger" style="border-right:none;display:none;float:right">
-					<a class="gn-icon gn-icon-menu"></a>
-					<nav class="gn-menu-wrapper">
-						<div class="gn-scroller">
-							<ul class="gn-menu">
-								<li class="gn-search-item" style="display:none">
-									<a id="demo03" href="#initModal" class="gn-icon gn-icon-search"></a>
-								</li>
-								<li><a id="demo01" href="#animatedModal" class="gn-icon gn-icon-archive">Posted Requests</a></li>
-								<li><a id="demo02" href="#acceptedModal" class="gn-icon gn-icon-help">Accepted Requests</a></li>
-								<li style="display:none"><a id="demo04" href="#profileModal" class="gn-icon gn-icon-help">My Profile</a></li>
-								<li style="display:none"><a href="#0" class="gn-icon gn-icon-cog cd-signin">Registration</a></li>
-								<li><a href="#" class="gn-icon gn-icon-cog cd-signin" onclick="editnum()">Edit Contact Number</a></li>								
-							</ul>
-						</div>
-					</nav>
-				</li-->
+				
 			</ul>			
 		</div>		
-		<div layout="row" ng-controller="AppCtrl" ng-cloak="" style="padding-top:60px;height:100%;background-color:#d1d1d1;background-size:contain background-repeat: no-repeat; background-size: 100% 100%;"  class="carddemoInCardActions">
+		<div layout="row" ng-controller="AppCtrl" ng-cloak="" style="padding-top:60px;height:100%;background-color:#eee;background-size:contain background-repeat: no-repeat; background-size: 100% 100%;"  class="carddemoInCardActions">
   <div flex flex-xs="" flex-gt-xs="30">
-  <md-card style="margin:14px 0px 0px 20px;">
+  <md-card style="margin:14px 0px 0px 20px; box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);padding-bottom:2px">
   <md-card-header style="padding:20px 40px;">
           <md-card-avatar>
 			<img src="pulse.gif">
@@ -909,17 +893,16 @@ input:focus {
   </md-card>
   </div>
   <div  flex flex-xs="" flex-gt-xs="30" style="padding-left:1px">
-  <md-content style="background-color:transparent;padding-left:0;padding-right:0px;" class="md-padding" layout-xs="column" layout="row">
-    <div layout="column" id="rqstgist" style="width:320px">
-      <md-card style="margin:0px;margin-top:8px">
-		<div style="height:200px;width:100%;background:#fff;background-size:contain; background-repeat:no-repeat; background-position:center;" id="tflbckg"></div>	  
+  
+      <md-card id="rqstgist" style="max-width:350px;margin:0px;margin-top:14px;padding-bottom:1px;box-shadow:0px 20px 10px 0px rgba(0, 0, 0, 0.15)">
+		<div style="border-top-right-radius:2px;height:200px;width:100%;background:#fff;background-size:contain; background-repeat:no-repeat; background-position:center;" id="tflbckg"></div>	  
         <md-card-header style="padding:15px 40px 15px 20px; border-top:1px solid #eaeaea; background-color:#ebf7fc">
           <md-card-avatar style="padding-top:5px">
             <md-icon md-svg-icon="moneyz.svg" style="padding:0;background:#ebf7fc;color:#000"></md-icon>
           </md-card-avatar>
 		  <md-card-header-text>
 			<span class="md-title" style="color:#000"><span style="font-size:14px;opacity:0.7;color:#d80000;letter-spacing:1px">YOU EARN</span> : <span id="pfare" style="color:#000;font-size:18px;font-weight:normal"></span></span>   
-			<span class="md-subhead" style="letter-spacing:1px"><span id="psize" style="color:#000;font-weight:normal;font-size:12px;margin-left:10px"><img src="line.png" style="width:70%;display:inline;"></span></span>
+			<span class="md-subhead" style="letter-spacing:1px"><span id="psize" style="color:#000;font-weight:normal;font-size:12px;margin-left:10px"><img src="line.png" style="width:100%;display:inline;"></span></span>
           </md-card-header-text>
         </md-card-header>
         <md-card-content style="padding:0px">
@@ -939,7 +922,7 @@ input:focus {
           </div>
         </md-list-item>
 		<md-list-item class="md-2-line" style="min-height:55px">
-          <div class="md-list-item-text" style="margin:0">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
             <p style="color:#000;font-weight:normal">Delivery Time</p>
 			<h3 style="font-size:14px" id="pdatetym"><img src="line.png" style="width:100%;display:inline;"></h3>            
           </div>
@@ -950,25 +933,23 @@ input:focus {
          	<md-button class="md-raised md-primary" style="width:90%;margin-top:0;margin-left:5%" ng-click="accept2()">ACCEPT</md-button>			
 		</md-card-content>	
        	<md-card-actions layout="row" layout-align="center" style="min-height:35px;margin-bottom:10px;">
-			<md-button id="prevbtn" onclick="showprev()">Previous</md-button>
-			<md-button class="md-raised" style="background:#eaeaea" id="nxtbtn" onclick="shownext()">Next</md-button>			
+			<md-button id="prevbtn" style="display:none" onclick="showprev()">Previous</md-button>
+			<md-button class="md-raised" style="display:none;background:#eaeaea" id="nxtbtn" onclick="shownext()">Next</md-button>			
 		</md-card-actions>
-      </md-card>      
-    </div>    
-  </md-content>
+      </md-card>  
+  
   </div>    
     <div flex flex-xs="" flex-gt-xs="40" style="background-color:transparent">
-  <md-content style="background-color:transparent;padding:10px;padding-top:6px" class="md-padding" layout-xs="column" layout="row">	
-    <div layout="column">
-      <md-card style="padding:10px;padding-top:0;min-width:450px">
+    
+      <md-card style="margin-top:14px;padding:10px;padding-top:0;max-width:500px;box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15)">
 	   <md-card-header>         
           <md-card-header-text style="text-align:center">
 			<span class="md-subhead">Want something delivered ?</span>
             <span id="tytl" class="md-title" style="font-weight:normal;color:#d80000"></span>            
           </md-card-header-text>
         </md-card-header>
-			<div id="packagephoto" style="position:absolute; left:0; right:0; top:-100px; bottom:0; margin:auto; max-width:100%; max-height:200px; overflow:auto;color:#888;font-size:18px;height:30px;z-index:1;text-align:center;letter-spacing:1px" onclick="document.getElementById('files').click()">ADD PACKAGE PHOTO</div>
-	  	  <div id="card" onclick="card()" style="height:200px;width:90%;margin-left:5%;background:#eaeaea;display:none"><input type="file" id="files" name="upload" style="z-index:999;width:97%;height:200px; opacity: 0;-moz-opacity: 0;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);"/></div>
+		  <div id="card" onclick="card()" style="height:200px;width:90%;margin-left:5%;background:#eee;display:none">	<div id="packagephoto" style="left:0; right:0; bottom:0; margin:auto; margin-top:90px; max-width:100%; max-height:200px; overflow:auto;color:#888;font-size:18px;height:30px;z-index:1;text-align:center;letter-spacing:1px" onclick="document.getElementById('files').click()">ADD PACKAGE PHOTO</div>
+	  	<input type="file" id="files" name="upload" style="z-index:999;width:97%;height:200px; opacity: 0;-moz-opacity: 0;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);"/></div>
     <div layout="row" id="pckginfo">
 	   <div flex>
        <md-card-content style="padding:5px 16px">
@@ -1060,89 +1041,158 @@ input:focus {
 	<md-button id="postbtn" onclick="done()" class="md-raised md-primary" style="background:#2bb1de;width:90%;margin-top:0;margin-left:5%;margin-bottom:15px;display:none">DONE</md-button>			
 	<md-button id="prevbtn2" onclick="shwdetls()" class="md-raised" style="background:#eaeaea;display:none;width:30%;margin-left:35%">BACK</md-button>
 	</md-card>     
-    </div>    
-  </md-content>  
+     
   </div>
-	</div>		
-		<!--script>
-			new gnMenu( document.getElementById( 'gn-menu' ) );
-		</script-->
-	<div id="animatedModal">
-		 <md-toolbar style="background:#5f6f81">
-      <div class="md-toolbar-tools">
-        
-        <h2>
-          <span style="color:#fff;margin-left:50px;font-weight:normal">Posted Requests</span>
-        </h2>
-        <span flex></span>
-        <md-button style="margin-right:50px;color:#fff">
-          <div class="close-animatedModal"> 
-            <md-icon md-svg-src="close.svg" aria-label="close"></md-icon> CLOSE
-        </div> 
-        </md-button>
-       
-      </div>
-		</md-toolbar>	
-        <div class="modal-content" ng-controller="AppCtrl" ng-cloak style="margin:40px;">
-        <md-content ng-show="postarr.length">
-		<md-list style="max-height:450px">
-        <md-list-item class="md-3-line" style="border-bottom:1px solid #d1d1d1" ng-repeat="msg in postarr" ng-if="msg.$id!='notification'">
-          <img data-ng-src="{{msg.img64}}" class="md-avatar" style="margin-left:20px;width:180px;height:180px;border-radius:10px">
-          <div class="md-list-item-text" layout="column" style="padding-top:25px;margin-top:0;padding-left:20px;">
-            <h3><span style="color:red;font-size:12px;letter-spacing:1px;margin-right:7px">YOU EARN </span> {{msg.fare}}</h3>
-            <h4 style="margin-top:10px">Size : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.pckgsize }}</span> </h4>
-			<h4 style="margin-top:10px">Delivery By: <span style="color:#5f6f81;letter-spacing:1px">{{msg.deliverytime}} on {{ msg.deliverydate }}</span> </h4>
-			<h4 style="margin-top:10px">Pickup Area : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.pickuparea }}</span> </h4>
-            <h4 style="margin-top:10px">Delivery Area : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.deliveryarea }}</span></h4>
-			<h4 style="margin-top:10px">Status : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.status }}</span></h4>			
-          </div>
-		  <md-list flex flex-xs="" flex-gt-xs="30" style="padding-left:10px">
-		   <md-subheader class="md-no-sticky" ng-show="msg.acceptors != null">BECK Friends who accepted this Request</md-subheader>
-		   <md-subheader class="md-no-sticky" ng-show="msg.acceptors == null"> </md-subheader>
-		  <md-list-item class="md-3-line" style="min-height:50px" ng-repeat="val in msg.acceptors">
-          <img ng-src="{{val.usrfbimg}}" class="md-avatar" style="border-radius:50%;width:40px;height:40px">
-          <div class="md-list-item-text" layout="column">
-            <h3 style="height:30px"><md-button ng-click="showprofile(val)" target="_blank" style="margin:0;font-size:12px;padding:0px">{{val.usrname}}</md-button></h3>
-            <h3 style="height:30px"><md-button ng-click="approvefrnd(val,msg.id)" class="md-primary" style="margin:0;font-size:12px;padding:0px 5px">APPROVE THIS PERSON TO CARRY IT</md-button></h3>            
-          </div>
-        </md-list-item>	
-		</md-list>
-		</md-list-item>
-        </md-list>
-		</md-content>
-        </div>
-    </div>
-	<div id="acceptedModal">
-		 <md-toolbar style="background:#5f6f81">
+	</div>	
+	<div id="animatedModal" style="background:#eee" ng-controller="AppCtrl" ng-cloak>
+		 <md-toolbar style="background-color:transparent">
       <div class="md-toolbar-tools">        
-        <h2>
-          <span style="color:#fff;margin-left:50px;font-weight:normal">Accepted Requests</span>
+        <h2 style="vertical-align:middle;text-align:center;color:#000;font-size:14px;text-transform:uppercase;font-weight:bold;margin-left:45%">
+		Posted Requests
         </h2>
-        <span flex></span>
-        <md-button style="margin-right:50px;color:#fff">
+        <span flex=""></span>
+        <md-button style="margin-right:50px;color:#000;opacity:0.7">
+          <div class="close-animatedModal"> 
+           <md-icon md-svg-src="close2.svg" aria-label="close" style="margin-right:5px"></md-icon> CLOSE
+        </div> 
+        </md-button>       
+      </div>
+	</md-toolbar>		
+	<md-content style="background-color:transparent;overflow:auto;margin:0px 2px; height:calc(100% - 75px)">
+        <div class="modal-content">
+        <div ng-show="postarr.length" layout="row">
+		<div flex ng-repeat="msg in postarr" ng-if="msg.$id!='notification'" style="max-width:350px;margin:0px 10px">
+		<md-card style="max-width:350px;box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15)">		
+		<div style="border-top-right-radius:2px;height:200px;width:100%;background:#fff;background-size:contain; background-repeat:no-repeat; background-position:center;" ng-style="{'background-image': 'url({{ msg.img64 }})'}"></div>	  
+        <md-card-header style="padding:15px 40px 15px 20px; border-top:1px solid #eaeaea; background-color:#ebf7fc" ng-show="!showDetails">
+          <md-card-avatar style="padding-top:5px">
+            <md-icon md-svg-icon="moneyz.svg" style="padding:0;background:#ebf7fc;color:#000"></md-icon>
+          </md-card-avatar>
+		  <md-card-header-text>
+			<span class="md-title" style="color:#000"><span style="font-size:14px;opacity:0.7;color:#d80000;letter-spacing:1px">ESTIMATE</span> : <span style="color:#000;font-size:18px;font-weight:normal">{{msg.fare}}</span></span>   
+			<span class="md-subhead" style="letter-spacing:1px"><span style="color:#000;font-weight:normal;font-size:12px;margin-left:10px">{{msg.pckgsize}}</span></span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content style="padding:0px" ng-show="!showDetails">
+		 <md-divider></md-divider>
+        <md-content>		
+      <md-list flex style="padding-bottom:0;padding-top:10px">       
+        <md-list-item class="md-2-line" style="min-height:45px">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
+            <p style="color:#16a765;font-weight:normal">Pickup Area</p>
+			<h3 style="font-size:12px">{{msg.pickuparea}}</h3>            
+          </div>
+        </md-list-item>
+		<md-list-item class="md-2-line" style="min-height:45px">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
+            <p style="color:#d80000;font-weight:normal">Delivery Area</p>
+			<h3 style="font-size:12px">{{msg.deliveryarea}}</h3>            
+          </div>
+        </md-list-item>
+		<md-list-item class="md-2-line" style="min-height:45px;">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
+            <p style="color:#000;font-weight:normal">Delivery Time</p>
+			<h3 style="font-size:12px">{{msg.deliverytime}} on {{ msg.deliverydate }}</h3>            
+          </div>
+        </md-list-item>
+		<md-list-item class="md-2-line" style="min-height:25px">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
+            <p style="color:#21a7d4;font-weight:normal">Status - {{msg.status}}</p>
+		  </div>
+        </md-list-item>
+      </md-list>
+    </md-content>		
+    </md-card-content>
+	<md-card-content style="padding:0px;" ng-show="showDetails">
+	<md-divider></md-divider>
+    <md-subheader class="md-no-sticky" style="background:#ebf7fc;text-align:center">People who accepted this Request</md-subheader>
+    <md-divider></md-divider>
+	<md-content style="height:175px;margin-bottom:20px">		
+        <md-list-item class="md-3-line" ng-repeat="val in msg.acceptors" style="cursor:pointer" ng-click="null">
+          <img ng-src="{{val.usrfbimg}}" class="md-avatar" alt="{{val.usrname}}" style="border-radius:50%;width:40px;height:40px" />
+          <div class="md-list-item-text" layout="column">
+            <h3 ng-click="showprofile(val)" target="_blank" style="outline:0">{{val.usrname}}</h3>
+            <h4 ng-click="showprofile(val)" target="_blank" style="outline:0;margin-top:5px; margin-bottom:10px;font-size:12px">Show Profile</h4>
+            <p ng-click="approvefrnd(val,msg.id)" style="color:rgb(63,81,181);outline:0;font-size:12px">APPROVE THIS PERSON</p>
+          </div>
+		  <md-divider></md-divider>
+        </md-list-item>			
+    </md-content>		
+    </md-card-content>	   
+       	<md-card-actions layout="row" layout-align="center" style="min-height:35px;margin-bottom:20px;" >
+			<md-button class="md-raised md-primary" style="padding-left:15px;padding-right:15px;font-size:12px" ng-show="msg.acceptors != null && ! showDetails"  ng-click="showDetails = ! showDetails">PEOPLE WHO ACCEPTED</md-button>					
+			<md-button md-no-ink class="md-primary" style="font-size:12px" ng-show="showDetails"  ng-click="showDetails = ! showDetails">BACK TO DETAILS</md-button>	
+		</md-card-actions>		
+      </md-card>		
+        </div>		
+		</div>		
+        </div>		
+	</md-content>
+    </div>
+	<div id="acceptedModal" style="background:#eee">
+		 <md-toolbar style="background-color:transparent">
+      <div class="md-toolbar-tools">        
+        <h2 style="vertical-align:middle;text-align:center;color:#000;font-size:14px;text-transform:uppercase;font-weight:bold;margin-left:45%">
+		Accepted Requests
+        </h2>
+        <span flex=""></span>
+        <md-button style="margin-right:50px;color:#000;opacity:0.7">
           <div class="close-acceptedModal"> 
-           <md-icon md-svg-src="close.svg" aria-label="close"></md-icon> CLOSE
+           <md-icon md-svg-src="close2.svg" aria-label="close" style="margin-right:5px"></md-icon> CLOSE
         </div> 
         </md-button>       
       </div>
 		</md-toolbar>	
-        <div class="modal-content" ng-controller="AppCtrl" ng-cloak style="margin:40px;">
-        <md-content ng-show="accepts.length">
-		<md-list style="max-height:450px">
-        <md-list-item  class="md-3-line" ng-repeat="msg in accepts" style="border-bottom:1px solid #d1d1d1" ng-if="msg.$id!='notification'">
-          <img data-ng-src="{{msg.img}}" class="md-avatar" style="margin-left:20px;width:180px;height:180px;border-radius:10px">
-          <div class="md-list-item-text" layout="column" style="padding-top:25px;padding-left:20px;">
-            <h3><span style="color:red;font-size:12px;letter-spacing:1px;margin-right:7px">YOU EARN </span> {{ msg.fare }}</h3>
-            <h4 style="margin-top:10px">Size : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.size }}</span> </h4>
-			<h4 style="margin-top:10px">Delivery By : <span style="color:#5f6f81;letter-spacing:1px">{{msg.time}} on {{ msg.date }}</span></h4>			
-			<h4 style="margin-top:10px">Pickup Area : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.pickup }}</span> </h4>
-			<h4 style="margin-top:10px">Delivery Area : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.delv }}</span> </h4>
-			<h4 style="margin-top:10px">Status : <span style="color:#5f6f81;letter-spacing:1px">{{ msg.status }}</span> </h4>
+		<md-content style="background-color:transparent;overflow:auto;margin:0px 2px; height:calc(100% - 75px)">
+        <div class="modal-content" ng-controller="AppCtrl" ng-cloak >
+        <div ng-show="accepts.length" layout="row">
+		<div flex ng-repeat="msg in accepts" ng-if="msg.$id!='notification'" style="max-width:350px;margin:0px 10px">
+		<md-card style="max-width:350px;box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15)">		
+		<div style="border-top-right-radius:2px;height:200px;width:100%;background:#fff;background-size:contain; background-repeat:no-repeat; background-position:center;" ng-style="{'background-image': 'url({{ msg.img }})'}"></div>	  
+        <md-card-header style="padding:15px 40px 15px 20px; border-top:1px solid #eaeaea; background-color:#ebf7fc">
+          <md-card-avatar style="padding-top:5px">
+            <md-icon md-svg-icon="moneyz.svg" style="padding:0;background:#ebf7fc;color:#000"></md-icon>
+          </md-card-avatar>
+		  <md-card-header-text>
+			<span class="md-title" style="color:#000"><span style="font-size:14px;opacity:0.7;color:#d80000;letter-spacing:1px">YOU EARN</span> : <span style="color:#000;font-size:18px;font-weight:normal">{{msg.fare}}</span></span>   
+			<span class="md-subhead" style="letter-spacing:1px"><span style="color:#000;font-weight:normal;font-size:12px;margin-left:10px">{{msg.size}}</span></span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content style="padding:0px">
+		 <md-divider></md-divider>
+        <md-content>		
+      <md-list flex style="padding-bottom:0;padding-top:10px">       
+        <md-list-item class="md-2-line" style="min-height:45px">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
+            <p style="color:#16a765;font-weight:normal">Pickup Area</p>
+			<h3 style="font-size:12px">{{msg.pickup}}</h3>            
           </div>
         </md-list-item>
-        </md-list>
-		</md-content>
+		<md-list-item class="md-2-line" style="min-height:45px">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
+            <p style="color:#d80000;font-weight:normal">Delivery Area</p>
+			<h3 style="font-size:12px">{{msg.delv}}</h3>            
+          </div>
+        </md-list-item>
+		<md-list-item class="md-2-line" style="min-height:45px">
+          <div class="md-list-item-text" style="margin:0">
+            <p style="color:#000;font-weight:normal">Delivery Time</p>
+			<h3 style="font-size:12px">{{msg.time}} on {{ msg.date }}</h3>            
+          </div>
+        </md-list-item>
+		<md-list-item class="md-2-line" style="min-height:50px;">
+          <div class="md-list-item-text" style="margin:0;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;width: 300px;">
+            <p style="color:#21a7d4;font-weight:normal">Status - {{msg.status}}</p>
+		  </div>
+        </md-list-item>
+      </md-list>
+    </md-content>		
+       </md-card-content>			
+      </md-card>		
+        </div>		
+		</div>
         </div>
+		</md-content>
     </div>
 		<div id="profileModal">
 		 <md-toolbar style="background:#252525">
@@ -1159,7 +1209,7 @@ input:focus {
       </div>
 		</md-toolbar>	
         <div class="modal-content" ng-controller="AppCtrl" ng-cloak style="margin:40px;">
-        <md-content style="width:50%;margin-left:35%;background:rgb(234,234,234)">
+        <md-content style="width:50%;margin-left:35%;background:#eee">
 		<div flex-xs flex-gt-xs="60" layout="column">		  
      <div class="card">
     <div class="card-header">
