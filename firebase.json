@@ -6,8 +6,6 @@
     "**/.*",
     "**/node_modules/**"
   ],
-   "cleanUrls": true,
-  "trailingSlash": false,
   "headers":[ {
     "source" : "**/*.@(jpg|jpeg|gif|png)",
     "headers" : [ {
