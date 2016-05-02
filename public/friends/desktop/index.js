@@ -505,7 +505,6 @@ $(document).ready(function(){
 			//location.reload();          
         };
 	}
-	
 	$("#searchloc").click(function () { $(this).select() });
 	$("#searchloc2").click(function () { $(this).select() });
 	$("#searchloc3").click(function () { $(this).select() });
@@ -1559,10 +1558,11 @@ $(document).ready(function(){
 	});
 	}
 	
-	function callautoinit(){		
+	function callautoinit(){	
 		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchlocinit'));
-        autocomplete.bindTo('bounds', map); 	
+		autocomplete.bindTo('bounds', map); 	
 		autocomplete.addListener('place_changed', function() {
+		
 		  var place = autocomplete.getPlace();
           if (!place.geometry) {
            return;
