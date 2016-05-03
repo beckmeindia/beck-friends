@@ -107,10 +107,14 @@ var $form_modal = $('.cd-user-modal'),
         }
         */
     });
-
+$('#myanchor').on('click', function(event){
+	  $('body').css('overflow','');
+    $('body').css('position','relative');
+			$form_modal.removeClass('is-visible');
+	});
 	//close modal
 	$('.cd-user-modal').on('click', function(event){
-		if( $(event.target).is($form_modal) || $(event.target).is('.cd-close-form') ) {
+		if($(event.target).is('.cd-close-form') ) {
       $('body').css('overflow','');
     $('body').css('position','relative');
 			$form_modal.removeClass('is-visible');
@@ -1225,7 +1229,6 @@ var $form_modal = $('.cd-user-modal'),
   background: rgba(52, 54, 66, 0.9);
   z-index: 3;
   overflow-y: auto;
-  cursor: pointer;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: opacity 0.3s, visibility 0.3s;
@@ -1587,12 +1590,16 @@ var $form_modal = $('.cd-user-modal'),
 <body id="top">
 <div class="cd-user-modal">
         <div class="cd-user-modal-container">
+			<img src="close.png" id="myanchor" alt="close"  style="cursor:pointer;opacity:0.5;position:absolute;width:25px;right:0;margin-right:5px;margin-top:5px"/>
             <ul class="cd-switcher" style="list-style-type: none;padding-left:0">
 				<li class="regli"><a class="rgli" href="#" style="text-decoration: none;">Sign In</a></li>
                 <li class="regli"><a class="rgli" href="#" style="text-decoration: none;">New User</a></li>
             </ul>
             <div id="cd-login">
                 <form class="cd-form">
+				<p class="fieldset"  style="text-align:center">
+					<label for="accept-terms" style="font-size:12px"><span style="font-size:14px;color:#88000">Get customized notifications</span><br>Check out what items match your travel plans automatically!</label>
+                </p>
                     <!--p class="fieldset"> 
                         <label class="image-replace cd-email" for="signin-email">Your E-mail</label>
                         <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="Email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">                       
@@ -1616,6 +1623,9 @@ var $form_modal = $('.cd-user-modal'),
             </div>
             <div id="cd-signup">
                 <form class="cd-form">
+				<p class="fieldset"  style="text-align:center">
+                    <label for="accept-terms" style="font-size:12px"><span style="font-size:14px;color:#88000">Make Money As You Travel</span><br>Check out what people are sending over the world.<br> See the items are a match for your travel plans!</label>
+                </p>
                       <p class="fieldset">
                         <input class="full-width has-padding" type="button" style="background:#3b5998;color:#fff;padding:3px 20px" value="Connect with Facebook" onclick="login()">
                     </p>  
@@ -1644,7 +1654,7 @@ var $form_modal = $('.cd-user-modal'),
                         <label for="accept-terms" style="font-size:10px">By signing up, you agree to the <a href="terms.html" target="_blank" style="text-decoration:none">Terms</a></label>
                     </p>
                 
-                <!--<p class="cd-form-bottom-message"><a onclick="start();" style="cursor:pointer;text-decoration:none;color:#d3d3d3;opacity:0.5">Skip & Get started</a></p>-->
+                <!--p class="cd-form-bottom-message"><a style="cursor:pointer;text-decoration:none;color:#d3d3d3;opacity:0.5">Close</a></p-->
             </div>
             <!--
            <div id="cd-reset-password">
@@ -1664,7 +1674,7 @@ var $form_modal = $('.cd-user-modal'),
 
                 <p class="cd-form-bottom-message"><a href="#">Back to log-in</a></p>
             </div>-->
-            <a id="myanchor" href="#" style="display:none" class="cd-close-form">Close</a>
+           
         </div>    </div> 
     <section class="hero" id="firstscrl" style="background-color:#000;background-image:url('http://beckserver.ap-southeast-1.elasticbeanstalk.com/images/hero.jpg')">
         <section class="navigation">
