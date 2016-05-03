@@ -26,9 +26,8 @@
     <script src="modernizr.js"></script>  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/jquery.plainoverlay.min.js" async></script>
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>  
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.2.0/jquery.waitforimages.js"></script>
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
 d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
@@ -1590,7 +1589,7 @@ $('#myanchor').on('click', function(event){
 <body id="top">
 <div class="cd-user-modal">
         <div class="cd-user-modal-container">
-			<img src="close.png" id="myanchor" alt="close"  style="cursor:pointer;opacity:0.5;position:absolute;width:25px;right:0;margin-right:5px;margin-top:5px"/>
+			<img src="close.png" onclick="ga('send', 'event', 'signupnav', 'close', '1');" id="myanchor" alt="close"  style="cursor:pointer;opacity:0.5;position:absolute;width:25px;right:0;margin-right:5px;margin-top:5px"/>
             <ul class="cd-switcher" style="list-style-type: none;padding-left:0">
 				<li class="regli"><a class="rgli" href="#" style="text-decoration: none;">Sign In</a></li>
                 <li class="regli"><a class="rgli" href="#" style="text-decoration: none;">New User</a></li>
@@ -1684,14 +1683,14 @@ $('#myanchor').on('click', function(event){
                     <div class="header-nav">
                         <nav>
                             <ul class="primary-nav">
-                                <li><a href="#howitworks" onclick="ga('send', 'event', 'navLink', 'howitworks', '1');">How it Works</a></li>
-                                <li><a href="#blog" onclick="ga('send', 'event', 'navLink', 'whyUs', '2');">Why Us</a></li>
-                                <li><a href="#teammem" onclick="ga('send', 'event', 'navLink', 'Team', '3');">Team</a></li>
-                                <li><a href="#contact" onclick="ga('send', 'event', 'navLink', 'Contact', '4');">Contact Us</a></li>
+                                <li><a href="#howitworks" onclick="ga('send', 'event', 'navLink', 'howitworks', '2');">How it Works</a></li>
+                                <li><a href="#blog" onclick="ga('send', 'event', 'navLink', 'whyUs', '3');">Why Us</a></li>
+                                <li><a href="#teammem" onclick="ga('send', 'event', 'navLink', 'Team', '4');">Team</a></li>
+                                <li><a href="#contact" onclick="ga('send', 'event', 'navLink', 'Contact', '5');">Contact Us</a></li>
                             </ul>
                             <ul class="member-actions">
-                               <li><a id="signin" class="login cd-login" style="cursor:pointer;cursor:hand;" onclick="ga('send', 'event', 'navLink', 'Login', '4');">Log in</a></li>
-                               <li><a id="signup" class="btn-white btn-small cd-signup" style="cursor:pointer;cursor:hand;" onclick="ga('send', 'event', 'navLink', 'Signup', '4');" >Sign up</a></li>
+                               <li><a id="signin" class="login cd-login" style="cursor:pointer;cursor:hand;" onclick="ga('send', 'event', 'navLink', 'Login', '6');">Log in</a></li>
+                               <li><a id="signup" class="btn-white btn-small cd-signup" style="cursor:pointer;cursor:hand;" onclick="ga('send', 'event', 'navLink', 'Signup', '7');" >Sign up</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -1913,7 +1912,7 @@ $('#myanchor').on('click', function(event){
                                 <p>Football Fanatic and Code Junkie</p>
                                 <p style="color:white;font-style: normal;font-size:22px">Mayukh Basu</p>
                                 <ul class="social-buttons">
-                                 <li><a href="https://in.linkedin.com/in/mayukh-basu-249b0a69" target="_blank" class="social-btn"><i class="fa fa-linkedin"></i></a></li>
+                                 <li><a href="https://in.linkedin.com/in/mayukhbasu94" target="_blank" class="social-btn" onclick="ga('send', 'event', 'linkedin', 'Mayukh', '8');"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
                             </li>
                             <li>
@@ -1921,7 +1920,7 @@ $('#myanchor').on('click', function(event){
                                 <p>Thinks in Codes</p>
                                 <p style="color:white;font-style: normal;font-size:22px">Rahul Basu</p>
                                 <ul class="social-buttons">
-                                 <li><a href="https://in.linkedin.com/in/rahulbasu710" target="_blank" class="social-btn"><i class="fa fa-linkedin"></i></a></li>
+                                 <li><a href="https://in.linkedin.com/in/rahulbasu710" target="_blank" class="social-btn" onclick="ga('send', 'event', 'linkedin', 'Rahul', '9');"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
                             </li>
                             <li>
@@ -1929,7 +1928,7 @@ $('#myanchor').on('click', function(event){
                                  <p>The 50 shades of Grey hair in the team</p>
                                 <p style="color:white;font-style: normal;font-size:22px">Deep Malhotra</p>
                                    <ul class="social-buttons">
-                                 <li><a href="https://in.linkedin.com/in/deepmalhotra" target="_blank" class="social-btn"><i class="fa fa-linkedin"></i></a></li>
+                                 <li><a href="https://in.linkedin.com/in/deepmalhotra" target="_blank" class="social-btn" onclick="ga('send', 'event', 'linkedin', 'Deep', '10');"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
                             </li>
                             <li>
@@ -1937,7 +1936,7 @@ $('#myanchor').on('click', function(event){
                                  <p>The woman who loves delivering</p>
                                     <p style="color:white;font-style: normal;font-size:22px">Shikha Pandey</p>
                                 <ul class="social-buttons">
-                                 <li><a href="https://in.linkedin.com/in/shikhapandey" target="_blank" class="social-btn"><i class="fa fa-linkedin"></i></a></li>
+                                 <li><a href="https://in.linkedin.com/in/shikhapandey" target="_blank" class="social-btn" onclick="ga('send', 'event', 'linkedin', 'Shikha', '11');"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -1962,9 +1961,9 @@ $('#myanchor').on('click', function(event){
                 <div class="col-md-7">
                     <div class="footer-links">
                         <ul class="footer-group">
-                             <li><a href="#beckinstant">BECK Instant Delivery</a></li>
-                            <li><a href="terms.html" target="_blank">Terms of Use</a></li>
-                            <li><a href="privacy.html" target="_blank">Privacy Policy</a></li>
+                             <li><a href="#beckinstant" onclick="ga('send', 'event', 'bottomNav', 'beckinstant', '12');">BECK Instant Delivery</a></li>
+                            <li><a href="terms.html" target="_blank" onclick="ga('send', 'event', 'bottomNav', 'termsofuse', '13');">Terms of Use</a></li>
+                            <li><a href="privacy.html" target="_blank" onclick="ga('send', 'event', 'bottomNav', 'privacypolicy', '14');">Privacy Policy</a></li>
                         </ul>
                         <p>Copyright © 2016 Beck Technology Ventures Pvt Ltd</p>
                         <p><span data-icon="&#xe901;" class="icon"></span>+91 99675 73684</p>
@@ -1974,7 +1973,7 @@ $('#myanchor').on('click', function(event){
                 </div>
                 <div class="social-share">
                     <p>CONNECT WITH US</p>
-                    <a href="https://twitter.com/beckdelivery" target="_blank" class="twitter-share"><i class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/BECKDelivery/" target="_blank" class="facebook-share"><i class="fa fa-facebook"></i></a><a href="https://www.instagram.com/beckdelivery/" target="_blank" class="instagram-share"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/beckdelivery" target="_blank" class="twitter-share" onclick="ga('send', 'event', 'bottomNav', 'twitter', '15');"><i class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/BECKDelivery/" target="_blank" onclick="ga('send', 'event', 'bottomNav', 'facebook', '1');" class="facebook-share"><i class="fa fa-facebook"></i></a><a href="https://www.instagram.com/beckdelivery/" target="_blank" class="instagram-share" onclick="ga('send', 'event', 'bottomNav', 'instagram', '17');" ><i class="fa fa-instagram"></i></a>
                 </div>
             </div>
         </div>
