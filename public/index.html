@@ -4,7 +4,7 @@
    <meta charset="utf-8">
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>BECK Friends</title>
+    <title>BECK Friends | Send anything anywhere. Earn as you travel.</title>
     <meta name="description" content="A global peer-to-peer network for sending or delivering anything anywhere economically with an opportunity to earn as you travel">
     <meta name="keywords" content="sharing economy,peer to peer,earn while you travel,deliver,friends,cheap international courier,send,international shipping">
     <meta name="author" content="Beck Technology Ventures Private Ltd."/>
@@ -1580,7 +1580,7 @@ var $form_modal = $('.cd-user-modal'),
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-75092541-1', 'auto');
-  ga('send', 'pageview');
+  ga('send', 'pageview');   
 
 </script>
 </head>
@@ -1612,7 +1612,7 @@ var $form_modal = $('.cd-user-modal'),
                         <input class="full-width has-padding" type="button" style="background:#3b5998;color:#fff;padding:6px 20px" value="Login with Facebook" onclick="login()">
                     </p>
                 </form>             
-                <p class="cd-form-bottom-message"><a onclick="start();" style="cursor:pointer;text-decoration:none;color:#d3d3d3;opacity:0.3">Skip & Get started</a></p>
+                <!--<p class="cd-form-bottom-message"><a onclick="start();" style="cursor:pointer;text-decoration:none;color:#d3d3d3;opacity:0.3">Skip & Get started</a></p>-->
             </div>
             <div id="cd-signup">
                 <form class="cd-form">
@@ -1643,7 +1643,8 @@ var $form_modal = $('.cd-user-modal'),
                     <p class="fieldset"  style="text-align:center">
                         <label for="accept-terms" style="font-size:10px">By signing up, you agree to the <a href="terms.html" target="_blank" style="text-decoration:none">Terms</a></label>
                     </p>
-                <p class="cd-form-bottom-message"><a onclick="start();" style="cursor:pointer;text-decoration:none;color:#d3d3d3;opacity:0.5">Skip & Get started</a></p>
+                
+                <!--<p class="cd-form-bottom-message"><a onclick="start();" style="cursor:pointer;text-decoration:none;color:#d3d3d3;opacity:0.5">Skip & Get started</a></p>-->
             </div>
             <!--
            <div id="cd-reset-password">
@@ -1673,15 +1674,14 @@ var $form_modal = $('.cd-user-modal'),
                     <div class="header-nav">
                         <nav>
                             <ul class="primary-nav">
-                                <li><a href="#howitworks">How it Works</a></li>
-                                <li><a href="#blog">Why Us</a></li>
-                                <li><a href="#teammem">Team</a></li>
-                                <li><a href="#contact">Contact Us</a></li>
+                                <li><a href="#howitworks" onclick="ga('send', 'event', 'navLink', 'howitworks', '1');">How it Works</a></li>
+                                <li><a href="#blog" onclick="ga('send', 'event', 'navLink', 'whyUs', '2');">Why Us</a></li>
+                                <li><a href="#teammem" onclick="ga('send', 'event', 'navLink', 'Team', '3');">Team</a></li>
+                                <li><a href="#contact" onclick="ga('send', 'event', 'navLink', 'Contact', '4');">Contact Us</a></li>
                             </ul>
                             <ul class="member-actions">
-							   <li><a class="login cd-login">Whatsapp @ +91 9967573684</a></li>
-                               <li><a id="signin" class="login cd-login">Log in</a></li>
-                               <li><a id="signup" class="btn-white btn-small cd-signup">Sign up</a></li>
+                               <li><a id="signin" class="login cd-login" style="cursor:pointer;cursor:hand;" onclick="ga('send', 'event', 'navLink', 'Login', '4');">Log in</a></li>
+                               <li><a id="signup" class="btn-white btn-small cd-signup" style="cursor:pointer;cursor:hand;" onclick="ga('send', 'event', 'navLink', 'Signup', '4');" >Sign up</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -1697,7 +1697,7 @@ var $form_modal = $('.cd-user-modal'),
                     <div class="hero-content text-center">
                         <h1><span style="color:white">BECK</span><span style="color:red"> Friends</span></h1>
                         <p class="intro">Send anything anywhere & Earn as you travel</p>
-                        <a id="signleft" class="btn btn-fill btn-large btn-margin-right cd-signup">TRY IT OUT</a> 
+                        <a id="signleft" class="btn btn-fill btn-large btn-margin-right cd-signup" onclick="ga('send', 'event', 'tryitout', 'Login', '4');">TRY IT OUT</a> 
                     </div> 
                 </div>
             </div>
@@ -1957,7 +1957,7 @@ var $form_modal = $('.cd-user-modal'),
                             <li><a href="privacy.html" target="_blank">Privacy Policy</a></li>
                         </ul>
                         <p>Copyright © 2016 Beck Technology Ventures Pvt Ltd</p>
-                        <p><span data-icon="&#xe901;" class="icon"></span> +91 99675 73684</p>
+                        <p><span data-icon="&#xe901;" class="icon"></span>+91 99675 73684</p>
                         <p><span data-icon="&#xe903;" class="icon"></span> support@beckme.com</p>
                         <p><span data-icon="&#xe902;" class="icon"></span> Mumbai, India</p>
                     </div>
