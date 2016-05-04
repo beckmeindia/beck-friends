@@ -51,7 +51,8 @@ var $form_modal = $('.cd-user-modal'),
 		$main_nav = $('#signleft');
         $sec_nav = $('#signup');
         $third_nav = $('#signin');
-
+        $fourth_nav = $('#whysignup1');
+        $fifth_nav = $('#whysignup2');
 	//open modal
 	$main_nav.on('click', function(event){
 		$form_modal.addClass('is-visible'); ( $(event.target).is('.cd-signup') ) ? signup_selected() : login_selected();
@@ -92,6 +93,40 @@ var $form_modal = $('.cd-user-modal'),
         $form_modal.addClass('is-visible'); ( $(event.target).is('.cd-signup') ) ? signup_selected() : login_selected();
     $('body').css('overflow','hidden');
     $('body').css('position','fixed');
+            /*
+        if( $(event.target).is($main_nav) ) {
+            // on mobile open the submenu
+            $(this).children('ul').toggleClass('is-visible');
+        } else {
+            // on mobile close submenu
+            $main_nav.children('ul').removeClass('is-visible');
+            //show modal layer
+            $form_modal.addClass('is-visible'); 
+            //show the selected form
+            ( $(event.target).is('.cd-signup') ) ? signup_selected() : login_selected();
+        }
+        */
+    });
+     $fourth_nav.on('click', function(event){
+        $form_modal.addClass('is-visible'); ( $(event.target).is('.cd-signup') ) ? signup_selected() : login_selected();
+    $('body').css('overflow','hidden');
+            /*
+        if( $(event.target).is($main_nav) ) {
+            // on mobile open the submenu
+            $(this).children('ul').toggleClass('is-visible');
+        } else {
+            // on mobile close submenu
+            $main_nav.children('ul').removeClass('is-visible');
+            //show modal layer
+            $form_modal.addClass('is-visible'); 
+            //show the selected form
+            ( $(event.target).is('.cd-signup') ) ? signup_selected() : login_selected();
+        }
+        */
+    });
+     $fifth_nav.on('click', function(event){
+        $form_modal.addClass('is-visible'); ( $(event.target).is('.cd-signup') ) ? signup_selected() : login_selected();
+    $('body').css('overflow','hidden');
             /*
         if( $(event.target).is($main_nav) ) {
             // on mobile open the submenu
@@ -1757,10 +1792,12 @@ $('#myanchor').on('click', function(event){
                 <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
                     <h3>For Sender</h3>
                     <p>How often do you have to send something somewhere urgently and have to rely on logistics partners to have the same delivered as per their timeline and price. Use BECK Friends to leverage on your trusted network to deliver anything anywhere. Upload your package details and people travelling the same route accept your delivery request and carry your package for you. The price is mutually decided between you and the traveller.</p>
+                    <a id="whysignup1" class="btn-white btn-small cd-signup" style="cursor:pointer;cursor:hand;background-color:#FF5274;color:#fff;margin-left:170px;margin-top:10px;" onclick="ga('send', 'event', 'whyUs', 'Signup', '19');" >Sign up</a>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
                     <h3>For Travellers</h3>
                     <p>Why not earn as you travel? Look for packages as per your travel plans on BECK Friends and carry packages for people on the network and get paid for it!The service is free and the decision to take up a delivery and the price for the same is decided by you. Sounds interesting?? </p>
+                    <a id="whysignup2" class="btn-white btn-small cd-signup" style="cursor:pointer;cursor:hand;background-color:#FF5274;color:#fff;margin-left:170px;margin-top:65px;" onclick="ga('send', 'event', 'whyUs', 'Signup', '18');" >Sign up</a>
                 </div>
             </div>
         </div>
