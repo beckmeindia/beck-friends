@@ -8,7 +8,7 @@
 		<title>BECK Friends | Send anything anywhere. Earn as you travel.</title>
 		<meta name="description" content="Peer-to-peer marketplace for sending anything anywhere" />
 		<meta name="keywords" content="Peer-to-peer marketplace for sending anything anywhere" />
-		<meta name="author" content="BeckFriends" />		
+		<meta name="author" content="BECK Friends" />		
 		<link rel="stylesheet" type="text/css" href="all.css"/>	
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzPsPjOxzeJeld7JTP4jIbqnZ61FjKkzg&libraries=places"></script>
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -36,6 +36,10 @@
 
 </script>
 <style>
+[flex].item {
+  -webkit-flex-basis: 350px;
+  flex-basis: 350px;
+}
 .btn-social{position:relative;padding-left:44px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.btn-social>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.6em;text-align:center;border-right:1px solid rgba(0,0,0,0.2)}
 .btn-social.btn-lg{padding-left:61px}.btn-social.btn-lg>:first-child{line-height:45px;width:45px;font-size:1.8em}
 .btn-social.btn-sm{padding-left:38px}.btn-social.btn-sm>:first-child{line-height:28px;width:28px;font-size:1.4em}
@@ -980,6 +984,7 @@ input:focus {
     });
 	
 	FB.getLoginStatus(function(response) {
+	console.log(response);
 	if (response.status === 'connected') {
 	FB.api('/me?fields=id,email,name,picture.height(100)', function(response) {	
 	  document.getElementById("profile_img").src = String(response.picture.data.url);
@@ -995,7 +1000,7 @@ input:focus {
 	hiname = 1; acceptsloaded=1;
 	loggedin=0,usrname="",usremail="",usrphone="",usrid="";
 	}
-	});	
+	}, true);	
 	};
 
 	(function(d, s, id){
@@ -1225,7 +1230,7 @@ input:focus {
     </div>
 	</div>	
 	<div id="animatedModal" style="background:#eee" ng-controller="AppCtrl" ng-cloak>
-		 <md-toolbar style="background-color:transparent">
+	<md-toolbar style="background-color:transparent">
       <div class="md-toolbar-tools">        
         <h2 style="vertical-align:middle;text-align:center;color:#000;font-size:14px;text-transform:uppercase;font-weight:bold;margin-left:45%">
 		Posted Requests
@@ -1240,9 +1245,8 @@ input:focus {
 	</md-toolbar>		
 	<md-content style="background-color:transparent;overflow:auto;margin:0px 2px; height:calc(100% - 75px)">
         <div class="modal-content">
-        <div ng-show="postarr.length" layout="row">
-		<div flex ng-repeat="msg in postarr" ng-if="msg.$id!='notification'" style="max-width:350px;margin:0px 10px">
-		<md-card style="max-width:350px;box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15)">		
+        <div flex="none" ng-show="posts.length" layout="row">		
+		<md-card flex="none" ng-repeat="msg in posts" ng-if="msg.$id!='notification'" style="width:350px;box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);box-sizing:border-box">		
 		<div style="border-top-right-radius:2px;height:200px;width:100%;background:#fff;background-size:contain; background-repeat:no-repeat; background-position:center;" ng-style="{'background-image': 'url({{ msg.img64 }})'}"></div>	  
         <md-card-header style="padding:15px 40px 15px 20px; border-top:1px solid #eaeaea; background-color:#ebf7fc" ng-show="!showDetails">
           <md-card-avatar style="padding-top:5px">
@@ -1291,9 +1295,9 @@ input:focus {
         <md-list-item class="md-3-line" ng-repeat="val in msg.acceptors" style="cursor:pointer" ng-click="null">
           <img ng-src="{{val.usrfbimg}}" class="md-avatar" alt="{{val.usrname}}" style="border-radius:50%;width:40px;height:40px" />
           <div class="md-list-item-text" layout="column">
-            <h3 ng-click="showprofile(val)" target="_blank" style="outline:0">{{val.usrname}}</h3>
-            <h4 ng-click="showprofile(val)" target="_blank" style="outline:0;margin-top:5px; margin-bottom:10px;font-size:12px">Show Profile</h4>
-            <p ng-click="approvefrnd(val,msg.id)" style="color:rgb(63,81,181);outline:0;font-size:12px">APPROVE THIS PERSON</p>
+            <h3 ng-click="showprofile(val)" target="_blank" style="margin-top:10px;outline:0">{{val.usrname}}</h3>
+            <h4 ng-click="showprofile(val)" target="_blank" style="outline:0;margin-bottom:5px; font-size:12px">Show Profile</h4>
+            <p ng-click="approvefrnd(val,msg.id)" style="margin-bottom:10px;color:rgb(63,81,181);outline:0;font-size:12px">APPROVE THIS PERSON</p>
           </div>
 		  <md-divider></md-divider>
         </md-list-item>			
@@ -1304,8 +1308,7 @@ input:focus {
 			<md-button md-no-ink class="md-primary" style="font-size:12px" ng-show="showDetails"  ng-click="showDetails = ! showDetails">BACK TO DETAILS</md-button>	
 		</md-card-actions>		
       </md-card>		
-        </div>		
-		</div>		
+       </div>		
         </div>		
 	</md-content>
     </div>
@@ -1325,9 +1328,8 @@ input:focus {
 		</md-toolbar>	
 		<md-content style="background-color:transparent;overflow:auto;margin:0px 2px; height:calc(100% - 75px)">
         <div class="modal-content" ng-controller="AppCtrl" ng-cloak >
-        <div ng-show="accepts.length" layout="row">
-		<div flex ng-repeat="msg in accepts" ng-if="msg.$id!='notification'" style="max-width:350px;margin:0px 10px">
-		<md-card style="max-width:350px;box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15)">		
+        <div flex="none" ng-show="accepts.length" layout="row">
+		<md-card flex="none" ng-repeat="msg in accepts" ng-if="msg.$id!='notification'" style="width:350px;box-shadow:0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);box-sizing:border-box">		
 		<div style="border-top-right-radius:2px;height:200px;width:100%;background:#fff;background-size:contain; background-repeat:no-repeat; background-position:center;" ng-style="{'background-image': 'url({{ msg.img }})'}"></div>	  
         <md-card-header style="padding:15px 40px 15px 20px; border-top:1px solid #eaeaea; background-color:#ebf7fc">
           <md-card-avatar style="padding-top:5px">
@@ -1369,8 +1371,7 @@ input:focus {
     </md-content>		
        </md-card-content>			
       </md-card>		
-        </div>		
-		</div>
+        </div>
         </div>
 		</md-content>
     </div>
