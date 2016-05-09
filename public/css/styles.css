@@ -156,7 +156,7 @@ ul li {
   list-style: none; }
 
 .section-padding {
-  padding: 45px 0; }
+  padding: 120px 0; }
 .tooltip {
   position: absolute;
   z-index: 1070;
@@ -411,7 +411,7 @@ Hero
 
 header {
   padding: 50px 0px 15px 0px;
-  border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+  border-bottom: solid 1px rgba(255, 255, 255, 1.0);
   position: relative;
   width: 1170px;
   margin: 0 auto;
