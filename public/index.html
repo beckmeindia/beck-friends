@@ -1662,8 +1662,8 @@ $('#myanchor').on('click', function(event){
 				<p class="fieldset"  style="text-align:center">
 					<label for="accept-terms" style="font-size:14px"><span style="font-size:16px;color:#88000">Get customized notifications</span><br>Check out what items match your travel plans automatically!</label>
                 </p>
-                    <!--p class="fieldset"> 
-                        <label class="image-replace cd-email" for="signin-email">Your E-mail</label>
+                    <p class="fieldset"> 
+                        <label class="image-replace cd-email" for="signin-email">Your Email</label>
                         <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="Email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">                       
                     </p>
                     <p class="fieldset">
@@ -1672,11 +1672,11 @@ $('#myanchor').on('click', function(event){
                         <a href="#" class="hide-password" style="text-decoration: none;;color:#7c7c7c">Hide</a>                        
                     </p>
                     <p class="fieldset">
-                        <input class="full-width" type="button" style="padding:6px 20px;background:#D7405D" value="Login with Email" onclick="loginmail()">
+                        <input class="full-width" type="button" style="padding:6px 20px;background:#D7405D" value="Log In" onclick="loginmail()">
                     </p>
                     <p class="fieldset" style="text-align:center;margin:0 auto;line-height:0px">
                         <label for="accept-terms" style="line-height:16px">OR</label>
-                    </p-->
+                    </p>
                     <p class="fieldset">
                         <input class="full-width has-padding" type="button" style="background:#3b5998;color:#fff;padding:6px 20px" value="Login with Facebook" onclick="login()">
                     </p>
@@ -1691,7 +1691,7 @@ $('#myanchor').on('click', function(event){
                       <p class="fieldset">
                         <input class="full-width has-padding" type="button" style="background:#3b5998;color:#fff;padding:3px 20px" value="Connect with Facebook" onclick="login()">
                     </p>  
-                    <!--p class="fieldset" style="text-align:center;margin:0 auto;line-height:0px">
+                    <p class="fieldset" style="text-align:center;margin:0 auto;line-height:0px">
                         <label for="accept-terms" style="line-height:16px">OR</label>
                     </p>    
                     <p class="fieldset">
@@ -1699,7 +1699,7 @@ $('#myanchor').on('click', function(event){
                         <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Name" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                     </p>
                     <p class="fieldset">
-                        <label class="image-replace cd-email" for="signup-email">Your E-mail</label>
+                        <label class="image-replace cd-email" for="signup-email">Your Email</label>
                         <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="Email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                     </p>
                     <p class="fieldset">
@@ -1709,7 +1709,7 @@ $('#myanchor').on('click', function(event){
                     </p>
                     <p class="fieldset">
                         <input class="full-width has-padding" type="button" style="padding:3px 20px;background:#D7405D" value="Sign Up" onclick="signupmail()">
-                    </p-->
+                    </p>
                     
                                     
                     <p class="fieldset"  style="text-align:center">
@@ -1724,8 +1724,8 @@ $('#myanchor').on('click', function(event){
 
                 <form class="cd-form">
                     <p class="fieldset">
-                        <label class="image-replace cd-email" for="reset-email">E-mail</label>
-                        <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        <label class="image-replace cd-email" for="reset-email">Email</label>
+                        <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="Email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         
                     </p>
 
@@ -2096,23 +2096,6 @@ $('#myanchor').on('click', function(event){
     });
 
   
-  FB.getLoginStatus(function(response) {
-  if (response.status === 'connected') {
-  /**
-  FB.api('/me?fields=id,email,name,picture.height(100)', function(response) { 
-  usremail = String(response.email);
-     checkfirebase(usremail)
-	 //start()
-    }); 
-  **/
-  //document.getElementById("signleft").style.display = "none";
-  }
-  else {
-  if(localStorage.getItem('svemail')){
-		start();
-	}
-  }
-  }); 
   };
 
   function mailconfirm(uemail){
@@ -2132,32 +2115,39 @@ $('#myanchor').on('click', function(event){
   });
   }
 
+	function login(){
+	ga('send', 'event', 'loginwithFacebook', 'button', '1');
 
-
-  function login(){
-
-  ga('send', 'event', 'loginwithFacebook', 'button', '1');
-
-  clicklogin=1;
-  
-  FB.login(function(response) {
-  if (response.authResponse) {
-  if (response.status === 'connected') {  
-  FB.api('/me?fields=id,email,name,picture.height(100)', function(response) {
-   usrname = String(response.name); usremail = String(response.email);
-	  usrfbid = String(response.id); usrfbimg = String(response.picture.data.url);
-	checkfirebase(usremail)
-	//start();
+	FB.login(function(response) {
+	if (response.authResponse) {
+	if (response.status === 'connected') {	
+	FB.api('/me?fields=id,email,name,picture.height(100)', function(response) {
+	usrfbimg = String(response.picture.data.url); usrname = String(response.name); usremail = String(response.email); usrfbid = String(response.id);
+	var usrnwmail = String(usremail).replace(/[^a-zA-Z0-9]/g, ' ');
+	if(usrnwmail=="undefined"){
+	swal({   title: "Email not received!",   text: "Could you please enter your Email?",   type: "input",   showCancelButton: false,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your Email Address" }, function(inputValue){   if (inputValue === false) return false;  if (inputValue === "" ||  !validateEmail(inputValue)) {     swal.showInputError("You need to enter a valid email address!");     return false   }      
+	mailconfirm(inputValue);
+	swal({title: "Email verification Code", text: "Please enter the 4 digit Verification Code sent to your Email",   type: "input",   showCancelButton: false,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Verification Code" }, 
+		function(emailVal){
+			if (emailVal === false) return false;
+			if (emailVal != otpmail) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
+				usremail = emailVal; checkfirebasefb(usremail,usrfbimg,usrname,usrfbid); 				
+		});
+	});
+	}else{
+	checkfirebasefb(usremail,usrfbimg,usrname,usrfbid); 	
+	}
+	  
     })
-  }else{
-  sweetAlert("Oops...", "Something went wrong. Could not Log you in", "error");
-  };
-  //document.getElementById("signleft").style.display = "none";
-  }
-  else {
-  }
-  } , {scope: 'email'});  
-  }
+	}else{
+	sweetAlert("Oops...", "Something went wrong. Could not Log you in", "error");
+	};
+	}
+	else {
+	acceptsloaded=1; loggedin=0,usrname="",usremail="",usrphone="",usrid=""; //check these things
+	}
+	},{scope: 'email'});	
+	}
 
 
      function start()
@@ -2177,44 +2167,6 @@ $('#myanchor').on('click', function(event){
             }
     }
 	
-function checkfirebase(email){    
-    usrnewmail = String(email).replace(/[^a-zA-Z0-9]/g, ' ');
-	$('body').plainOverlay('show',{
-      opacity:0.8,
-      fillColor: '#000',
-      progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Working...</div>'); }
-    });
-    firebaseRef.child("users").child(usrnewmail).child("account").once("value", function(snapshot) {     
-      if(snapshot.val()){
-        usrname = snapshot.child("usrname").val();
-        usremail=  snapshot.child("usremail").val();
-        usrphone = snapshot.child("usrphone").val();
-        usrid = snapshot.child("usrid").val();
-        fbflag = 0; loggedin = 1;$('#myanchor').click();start();      
-      }else if(clicklogin==1){
-	    if( typeof usrnewmail === 'undefined' || usrnewmail=="undefined" || usrnewmail === null || usremail == "" || usrnewmail == ""){
-		$('body').plainOverlay('hide'); $('#myanchor').click();
-		swal({   title: "Your Email!",   text: "Oops! There was a problem confirming your email",   type: "input",   showCancelButton: false,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Your email here" }, function(inputValuez){   if (inputValuez === false) return false;      if (inputValuez === "") {     swal.showInputError("You need to write something!");     return false   }     usrnewmail = String(inputValuez).replace(/[^a-zA-Z0-9]/g, ' '); usremail = inputValuez;
-		firebaseRef.child("users").child(usrnewmail).child("account").update({
-          usrname:usrname, usremail:usremail, usrid:usrnewmail, usrfbimg:usrfbimg, usrfbid:usrfbid
-        }); 
-        var regsclbck = "New user registered on friends : "+usrname+" "+usremail; var tempemail = "";var temphone = ""; mailcall(regsclbck,tempemail,temphone); $('#myanchor').click(); start()
-		})
-		}
-        else{
-		firebaseRef.child("users").child(usrnewmail).child("account").update({
-          usrname:usrname, usremail:usremail, usrid:usrnewmail, usrfbimg:usrfbimg, usrfbid:usrfbid
-        }); 
-        var regsclbck = "New user registered on friends : "+usrname+" "+usremail;
-		var tempemail = "";var temphone = "";
-        mailcall(regsclbck,tempemail,temphone); 
-        $('#myanchor').click(); 
-        start();
-		}
-        }       
-    });
-}
-
 function mailcall(custName,custEmail,custPhone){
   $.ajax({
       url: 'https://www.beckme.in/request.php',
@@ -2239,93 +2191,177 @@ function mailcall(custName,custEmail,custPhone){
   }
 
   var passwd;
-  function signupmail(){
-    if(document.getElementById("signup-email").value==""||document.getElementById("signup-username").value==""||document.getElementById("signup-password").value==""){
-      swal({   title: "Insufficient Details",   text: "Oops! Please fill all details for Signing Up",   type: "error",   confirmButtonText: "OK" });
-      return;
-    }
-    usremail = document.getElementById("signup-email").value;
-    if(!validateEmail(usremail)){
-      swal({   title: "Incorrect Email",   text: "Oops! Please enter a valid E-mail address & try again",   type: "error",   confirmButtonText: "OK" });
-      usremail="";
-      return
-    };    
-    $('body').plainOverlay('show',{
-      opacity:0.8,
-      fillColor: '#000',
-      progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Working...</div>'); }
-    });
-    usrname = document.getElementById("signup-username").value;
-    passwd = document.getElementById("signup-password").value;
-    usrnewmail = String(usremail).replace(/[^a-zA-Z0-9]/g, ' ');
-    firebaseRef.child("users").child(usrnewmail).once("value", function(snapshot) {
-      if(snapshot.val()){
-        $('body').plainOverlay('hide'); 
-        swal({   title: "Email already in use",   text: "Hey! You are already registered with us. Please Login",   timer: 2000,   showConfirmButton: false });    
-        $('#signinbtnn').click();   
-      }else{
-        mailconfirm(usremail);
-        $('body').plainOverlay('hide');
-        swal({title: "E-mail verification Code", text: "Please enter the 4 digit Verification Code sent to your E-mail",   type: "input",   showCancelButton: false,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Verification Code" }, 
-        function(emailVal){
-        if (emailVal === false) return false;
-        if (emailVal != otpmail) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
-        swal("Mail Verification Succesful", "Congratulations. You verified your E-mail Succesfully", "success");
-        firebaseRef.createUser({ email : usremail,  password : passwd}, function(error, userData) {
-          localStorage.setItem('svemail' , usremail);
-          localStorage.setItem('svpsw' , passwd);
-          if (error) {
-            sweetAlert("Oops...", "There was a problem creating your Account. Please try Again", "error");
-            $('#myanchor').click();
-            $('body').plainOverlay('hide');
-            return;
-          } else {
-            firebaseRef.child("users").child(usrnewmail).update({usrname:usrname, usremail:usremail, usrid:usrnewmail});  
-            //usrphone = intno; 
-            usrphone = "fb signup";
-            usrid = usrnewmail; var regsclbck = "New user registered on friends : "+usrname+" "+usrphone+" "+usremail;
-            mailcall(regsclbck); $('#myanchor').click(); start();
-          }
-        });     
-        });
-      }
-    })
-  }
+ 
+	function loginmail(){
+		if(document.getElementById("signin-email").value==""||document.getElementById("signin-password").value==""){
+			swal({   title: "Insufficient Details",   text: "Oops! Please fill all details for Signing In",   type: "error",   confirmButtonText: "OK" });
+			return;
+		}
+		$('body').plainOverlay('show',{
+			opacity:0.8,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Working...</div>'); }
+		});		
+		usremail = document.getElementById("signin-email").value;
+		passwd = document.getElementById("signin-password").value;
+		usrnewmail = String(usremail).replace(/[^a-zA-Z0-9]/g, ' ');
+		firebaseRef.authWithPassword({email:usremail, password : passwd}, function(error, authData) {
+		if (error) {
+			$('body').plainOverlay('hide');
+			sweetAlert("Incorrect credentials", "Please try with correct Email & password. If you are a new user, please Sign Up", "error"); return;
+		}else{
+		firebaseRef.child("users").child(usrnewmail).child("account").once("value", function(snapshot) {			
+			if(snapshot.val()){
+				usrname = snapshot.child("usrname").val();
+				usremail=  snapshot.child("usremail").val();
+				usrphone = snapshot.child("usrphone").val();
+				usrimg = snapshot.child("usrimg").val();
+				usrid = snapshot.child("usrid").val();	
+				if(snapshot.child("idforverify").child("first").val()){
+					document.getElementById("verifbckg1").style.background = "url('"+snapshot.child("idforverify").child("first").val()+"') center/contain no-repeat";
+					document.getElementById("verfwrt").style.display = "none";
+				}
+				if(snapshot.child("idforverify").child("second").val()){
+					document.getElementById("verifbckg2").style.background = "url('"+snapshot.child("idforverify").child("second").val()+"') center/contain no-repeat";
+					document.getElementById("verfwrt2").style.display = "none";				
+				}				
+				loggedin = 1; document.cookie = "beckusrmail="+usremail+"; expires=Wed, 14 Feb 2029 12:00:00 UTC";
+				$('#myanchor').click(); $('body').plainOverlay('hide');	start();
+				
+				/*
+				if(postctr==1){ $("#posting").click(); postctr=0; }else if(acceptctr==1){ $("#accepting").click(); acceptctr=0};
+				document.getElementById("namehdr").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);		 
+				document.getElementById("profile_name").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);	 document.getElementById("signleft").style.display = "none";
+				document.getElementById("profile_img").src = usrimg; $('body').plainOverlay('hide');
+				*/
+			}else{
+				$('#signupbtnn').click();
+				sweetAlert("New User?", "Are a new user, please Sign Up", "warning"); $('body').plainOverlay('hide');
+				return;
+			}
+	  })
+	}
+	});
+	}
+	function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+	}
 
-  function loginmail(){
-    if(document.getElementById("signin-email").value==""||document.getElementById("signin-password").value==""){
-      swal({   title: "Insufficient Details",   text: "Oops! Please fill all details for Signing In",   type: "error",   confirmButtonText: "OK" });
-      return;
-    } 
-    $('body').plainOverlay('show',{opacity:0.8, fillColor: '#000', progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Logging you in...</div>') }});
-    usremail = document.getElementById("signin-email").value;
-    passwd = document.getElementById("signin-password").value;
-    usrnewmail = String(usremail).replace(/[^a-zA-Z0-9]/g, ' ');
-    firebaseRef.authWithPassword({email:usremail, password : passwd}, function(error, authData) {
-  if (error) {
-    $('body').plainOverlay('hide');
-  sweetAlert("Incorrect credentials", "Please try with correct E-mail & password. If you are a new user, please Sign Up", "error");
-  return;
-  } else {
-    firebaseRef.child("users").child(usrnewmail).once("value", function(snapshot) {
-    $('body').plainOverlay('hide');
-    if(snapshot.val()){       
-        usrname = snapshot.child("usrname").val();
-        usremail=  snapshot.child("usremail").val();
-        usrphone = snapshot.child("usrphone").val();
-        usrid = snapshot.child("usrid").val();
-        localStorage.setItem('svemail' , usremail);
-        localStorage.setItem('svpsw' , passwd);
-        loggedin = 1; start(); $('#myanchor').click();   
-      }else{
-        sweetAlert("Oops...", "Our servers could not recognise you. Please try Again", "error");
-            
-      }
-  });
+	var passwd;
+	function signupmail(){
+		if(document.getElementById("signup-email").value==""||document.getElementById("signup-username").value==""||document.getElementById("signup-password").value==""){
+			swal({   title: "Insufficient Details",   text: "Oops! Please fill all details for Signing Up",   type: "error",   confirmButtonText: "OK" });
+			return;
+		}
+		usremail = document.getElementById("signup-email").value;
+		if(!validateEmail(usremail)){
+			swal({   title: "Incorrect Email",   text: "Oops! Please enter a valid Email address & try again",   type: "error",   confirmButtonText: "OK" });
+			usremail="";
+			return
+		};		
+		$('body').plainOverlay('show',{
+			opacity:0.8,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Working...</div>'); }
+		});
+		usrname = document.getElementById("signup-username").value;
+		passwd = document.getElementById("signup-password").value;
+		usrnewmail = String(usremail).replace(/[^a-zA-Z0-9]/g, ' ');
+		firebaseRef.child("users").child(usrnewmail).once("value", function(snapshot) {
+			if(snapshot.val()){
+				$('body').plainOverlay('hide');	
+				swal({   title: "Email already in use",   text: "Hey! You are already registered with us. Please Login",   timer: 2000,   showConfirmButton: false });		
+				$('#signinbtnn').click();		
+			}else{
+				mailconfirm(usremail);
+				$('body').plainOverlay('hide');
+				swal({title: "Email verification Code", text: "Please enter the 4 digit Verification Code sent to your Email",   type: "input",   showCancelButton: false,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Verification Code" }, 
+				function(emailVal){
+				if (emailVal === false) return false;
+				if (emailVal != otpmail) {     swal.showInputError("Please Enter the correct 4 digits");     return false   }
+				firebaseRef.createUser({ email    : usremail,  password : passwd}, function(error, userData) {
+					if (error) {
+						swal("Oops...", "There was a problem creating your Account. Please try Again", "error");
+						$('body').plainOverlay('hide');
+						return;
+					} else {
+						swal("Account Created!", "We shall keep you updated with trips on your route", "success");
+						firebaseRef.child("users").child(usrnewmail).child("account").update({usrimg:usrimg,usrname:usrname, usremail:usremail, usrid:usrnewmail});	
+						document.cookie = "beckusrmail="+usremail+"; expires=Wed, 14 Feb 2029 12:00:00 UTC";
+						usrid = usrnewmail; var regsclbck = "New user registered on friends : "+usrname+" "+usremail;
+						mailcall(regsclbck); loggedin = 1; 
+						/*
+				if(postctr==1){ $("#posting").click(); postctr=0; }else if(acceptctr==1){ $("#accepting").click(); acceptctr=0};
+				document.getElementById("namehdr").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);		 
+				document.getElementById("profile_name").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);	 document.getElementById("signleft").style.display = "none";
+				document.getElementById("profile_img").src = usrimg; $('body').plainOverlay('hide');
+				*/
+				$('#myanchor').click();	start();			
+				};
+				})
+				});
+			}; 			
+		});
+	}
+	
+	function isLocalStorageNameSupported() {
+  var testKey = 'test', storage = window.localStorage;
+  try {
+    storage.setItem(testKey, '1');
+    storage.removeItem(testKey);
+    return true;
+  } catch (error) {
+    return false;
   }
-  });
-  }
+}
 
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) {
+		return c.substring(nameEQ.length,c.length);
+		}
+	}
+    return null;
+}
+
+	function checkfirebasefb(usremail,usrfbimg,usrname,usrfbid){		
+		usrnewmail = String(usremail).replace(/[^a-zA-Z0-9]/g, ' ');
+		$('body').plainOverlay('show',{
+			opacity:0.8,
+			fillColor: '#000',
+			progress: function() { return $('<div style="font-size:40px;color:#fff;font-weight:bold">Working...</div>'); }
+		});
+		firebaseRef.child("users").child(usrnewmail).child("account").once("value", function(snapshot){		
+				
+			if(snapshot.val()){
+				usrname = snapshot.child("usrname").val();
+				usremail=  snapshot.child("usremail").val();
+				usrphone = snapshot.child("usrphone").val();
+				usrid = snapshot.child("usrid").val();
+				usrimg = snapshot.child("usrimg").val();
+				loggedin = 1; document.cookie = "beckusrmail="+usremail+"; expires=Wed, 14 Feb 2029 12:00:00 UTC"; $('#myanchor').click(); start();
+				//if(postctr==1){ $("#posting").click(); postctr=0; }else if(acceptctr==1){ $("#accepting").click(); acceptctr=0};
+				//document.getElementById("profile_img").src = usrimg; document.getElementById("namehdr").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);		 
+				//document.getElementById("profile_name").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);	 document.getElementById("signleft").style.display = "none"; $('body').plainOverlay('hide');	
+				
+			}
+			else{
+			firebaseRef.child("users").child(usrnewmail).child("account").child("facebook").update({fbimg:usrfbimg, name:usrname, email:usremail, id:usrfbid, fbid:usrfbid});
+			firebaseRef.child("users").child(usrnewmail).child("account").update({usrimg:usrfbimg,usrname:usrname, usremail:usremail, usrid:usrnewmail});	
+			$('#myanchor').click(); document.cookie = "beckusrmail="+usremail+"; expires=Wed, 14 Feb 2029 12:00:00 UTC"; start();
+			//usrimg = snapshot.child("usrimg").val(); document.getElementById("profile_img").src = usrimg; $('body').plainOverlay('hide');	
+			//document.getElementById("namehdr").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);
+			//document.getElementById("profile_name").innerHTML = 'Hi ' + usrname.split(" ")[0].substring(0, 10);	 document.getElementById("signleft").style.display = "none";
+			}			
+		});
+	}
+	
+	
     </script>
 </body>
 </html>
